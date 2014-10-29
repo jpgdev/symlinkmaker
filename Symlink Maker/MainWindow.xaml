@@ -11,6 +11,11 @@
         MouseDown="Window_MouseDown">
     
     <Window.Resources>
+
+        <SolidColorBrush x:Key="BackgroundBrush" Color="LightGray"/>
+        <SolidColorBrush x:Key="ForegroundBrush" Color="Black"/>
+
+
         <Style TargetType="Button">
             <Setter Property="Margin" Value="5, 0"/>
             <Setter Property="HorizontalAlignment" Value="Stretch"/>
@@ -20,17 +25,22 @@
             <Setter Property="Height" Value="20"/>
             <Setter Property="FontSize" Value="11"/>            
         </Style>
-        <Style TargetType="TextBlock">
+        <!--<Style TargetType="TextBlock">
             <Setter Property="Margin" Value="0,2"/>
             <Setter Property="Foreground" Value="Black"/>
-        </Style>
+        </Style>-->
+
+        <!--<Style TargetType="custom:CustomButton">
+            <Setter Property="Foreground" Value="{StaticResource ForegroundBrush}"/>
+        </Style>-->
+        
         <Style TargetType="Label">
             <Setter Property="Margin" Value="5,0"/>
-            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Foreground" Value="{StaticResource ForegroundBrush}"/>
             <Setter Property="VerticalAlignment" Value="Bottom"/>
         </Style>
 
-        <SolidColorBrush x:Key="BackgroundBrush" Color="LightGray"/>
+        
         
     </Window.Resources>
 
@@ -40,10 +50,10 @@
         </Style>
     </Window.Style>-->
 
-    <Border BorderBrush="Gray"            
+    <Border BorderBrush="DarkGray"            
             BorderThickness="0,0,2,2"
-            CornerRadius="10"
             Background="{StaticResource BackgroundBrush}">
+        <!--CornerRadius="10"-->
 
         <StackPanel>
             <Grid VerticalAlignment="Top">
@@ -86,7 +96,7 @@
 
                 <Label Grid.Column="0" Grid.Row="0" Content="Source"/>
                 <TextBox x:Name="TxtSymLinkSource" Grid.Column="1" Grid.Row="0" />
-                <custom:CustomButton Grid.Column="2" Grid.Row="0" Content="..." Click="BtnBrowseSource_Click" Grid.ColumnSpan="2" FontSize="20" FontWeight="Bold"/>
+                <custom:CustomButton Grid.Column="2" Grid.Row="0" Content="..." Click="BtnBrowseSource_Click" Grid.ColumnSpan="2"  FontSize="20" FontWeight="Bold"/>
 
                 <Label Grid.Column="0" Grid.Row="1" Content="Destination"/>
                 <TextBox x:Name="TxtSymLinkDestination" Grid.Column="1" Grid.Row="1"/>
@@ -108,13 +118,13 @@
                     <RowDefinition Height="35"/>
                 </Grid.RowDefinitions>
 
-                <custom:CustomButton Grid.Column="0" Grid.Row="0" Content="Copy the save games" Click="CopySavesButton_Click" />
+                <custom:CustomButton Grid.Column="0" Grid.Row="0" Content="Copy the source content" Click="CopySavesButton_Click" ToolTip="Copy the source directory content to the content of the destination directory."/>
 
-                <custom:CustomButton Grid.Column="1" Grid.Row="0" Content="Delete source directory" Click="DeleteSourceDirButton_Click" />
+                <custom:CustomButton Grid.Column="1" Grid.Row="0" Content="Delete source directory" Click="DeleteSourceDirButton_Click" ToolTip="Delete the source directory and all of its content."/>
 
-                <custom:CustomButton Grid.Column="2" Grid.Row="0" Content="Create the symbolic link" Click="SymLinkButton_Click" />
+                <custom:CustomButton Grid.Column="2" Grid.Row="0" Content="Create the symbolic link" Click="SymLinkButton_Click" ToolTip="Create a symbolic link using the name and path from the source to link to the path of the destination."/>
 
-                <custom:CustomButton Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" Content="Launch complete process" Click="DoWholeButton_Click" FontSize="20"/>
+                <custom:CustomButton Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" Content="Launch complete process" Click="DoWholeButton_Click" FontSize="20" ToolTip="Launch all 3 operations in order : Copy the saves, Delete the original saves and then create the symbolic link in between."/>
 
             </Grid>
 
