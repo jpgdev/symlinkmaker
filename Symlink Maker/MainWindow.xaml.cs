@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Windows;
@@ -98,13 +99,13 @@ namespace Symlink_Maker
             return false;            
         }
 
-        private bool CreateSymLink()
+        private static bool CreateSymLink(string sourcePath, string destinationPath)
         {
-            string confirmMessage = String.Format("Making a syslink: {0} ==> {1} ?", TxtSymLinkSource.Text, TxtSymLinkDestination.Text);
+            string confirmMessage = String.Format("Making a syslink: {0} ==> {1} ?", sourcePath, destinationPath);
             MessageBoxResult result = System.Windows.MessageBox.Show(confirmMessage, "Sym link validation", MessageBoxButton.OKCancel, MessageBoxImage.Question);
             if (result == MessageBoxResult.OK)
             {
-                bool created = CreateSymbolicLink(TxtSymLinkSource.Text, TxtSymLinkDestination.Text, SymbolicLink.Directory);
+                bool created = CreateSymbolicLink(sourcePath, destinationPath, SymbolicLink.Directory);
 
                 System.Windows.MessageBox.Show(created ? "Symbolic link created." : "Symbolic link creation failed.");
 
@@ -114,27 +115,27 @@ namespace Symlink_Maker
             return false;
         }
 
-        private bool CopySaves()
+        private bool CopyDirectoryContent(string sourcePath, string destinationPath)
         {
             string confirmMessage = String.Format("Copying the save games from '{0}' to '{1}' ?", TxtSymLinkSource.Text, TxtSymLinkDestination.Text);
             MessageBoxResult result = System.Windows.MessageBox.Show(confirmMessage, "Save games copy validation", MessageBoxButton.OKCancel, MessageBoxImage.Question);
             if (result == MessageBoxResult.OK)
             {
-                return DirectoryCopy(TxtSymLinkSource.Text, TxtSymLinkDestination.Text, true);
+                return DirectoryCopy(sourcePath, destinationPath, true);
             }
 
             return false;
         }
 
-        private bool DeleteSourceDirectory()
+        private static bool DeleteDirectory(string path)
         {
-            string confirmMessage = String.Format("Are you sure you want to delete '{0}' and all contained directories?", TxtSymLinkSource.Text);
+            string confirmMessage = String.Format("Are you sure you want to delete '{0}' and all contained directories?", path);
             MessageBoxResult result = System.Windows.MessageBox.Show(confirmMessage, "Directory deletion validation", MessageBoxButton.OKCancel, MessageBoxImage.Question);
             if (result == MessageBoxResult.OK)
             {
                 try
                 {
-                    Directory.Delete(TxtSymLinkSource.Text, true);
+                    Directory.Delete(path, true);
                     return true;
                 }
                 catch (Exception ex)
@@ -149,6 +150,16 @@ namespace Symlink_Maker
 
         #region Events Handler
 
+        private void BtnOpenSourceFolder_Click(object sender, RoutedEventArgs e)
+        {
+            Process.Start(TxtSymLinkSource.Text);
+        }
+
+        private void BtnOpenDestinationFolder_Click(object sender, RoutedEventArgs e)
+        {
+            Process.Start(TxtSymLinkDestination.Text);
+        }
+
         private void BtnBrowseSource_Click(object sender, RoutedEventArgs e)
         {
             TxtSymLinkSource.Text = GetPathFromPicker(TxtSymLinkSource.Text);
@@ -161,25 +172,36 @@ namespace Symlink_Maker
 
         private void CopySavesButton_Click(object sender, RoutedEventArgs e)
         {
-            CopySaves();
+            CopyDirectoryContent(TxtSymLinkSource.Text, TxtSymLinkDestination.Text);
         }
 
         private void DeleteSourceDirButton_Click(object sender, RoutedEventArgs e)
         {
-            DeleteSourceDirectory();
+            DeleteDirectory(TxtSymLinkSource.Text);
         }
         private void SymLinkButton_Click(object sender, RoutedEventArgs e)
         {
-            CreateSymLink();
+            CreateSymLink(TxtSymLinkSource.Text, TxtSymLinkDestination.Text);
         }
 
         private void DoWholeButton_Click(object sender, RoutedEventArgs e)
         {
-            if (!CopySaves()) return;
-            if (!DeleteSourceDirectory()) return;
-            if (!CreateSymLink()) return;
+            //ProgBarProcess.Visibility = System.Windows.Visibility.Visible;
+            //ProgBarProcess.Value = 0;
+
+            //double step = ProgBarProcess.Maximum / 3;
+
+            if (!CopyDirectoryContent(TxtSymLinkSource.Text, TxtSymLinkDestination.Text)) return;
+            //ProgBarProcess.Value += step;
+
+            if (!DeleteDirectory(TxtSymLinkSource.Text)) return;
+            //ProgBarProcess.Value += step;
+
+            if (!CreateSymLink(TxtSymLinkSource.Text, TxtSymLinkDestination.Text)) return;
+            //ProgBarProcess.Value += step;
 
             System.Windows.MessageBox.Show("The whole process was successfull.");
+            //ProgBarProcess.Visibility = System.Windows.Visibility.Hidden;
         }
 
         #endregion
@@ -207,5 +229,7 @@ namespace Symlink_Maker
             if(System.Windows.MessageBox.Show("Are you sure you want to quit?", "Quit", MessageBoxButton.OKCancel) != MessageBoxResult.OK)
                 e.Cancel = true;
         }
+
+      
     }
 }
