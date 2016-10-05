@@ -1,0 +1,24 @@
+﻿<Properties StartupItem="SymlinkMaker.GUI.GTKSharp/SymlinkMaker.GUI.GTKSharp.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="SymlinkMaker.CLI/CLICommand.cs">
+    <Files>
+      <File FileName="SymlinkMaker.CLI/Program.cs" Line="250" Column="27" />
+      <File FileName="SymlinkMaker.CLI/CLICommand.cs" Line="79" Column="61" />
+      <File FileName="SymlinkMaker.GUI.GTKSharp/MainWindow.cs" Line="76" Column="52" />
+      <File FileName="SymlinkMaker.GUI.GTKSharp/GtkSharpCommand.cs" Line="50" Column="61" />
+      <File FileName="SymlinkMaker.Core/Commands/ConfirmableCommand.cs" Line="21" Column="54" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/home/jp/Projects/symlinkmaker/SymlinkMakerOperations/SymlinkMaker.cs" line="19" column="1" />
+      <Breakpoint file="/home/jp/Projects/symlinkmaker/SymlinkMaker.CLI/Program.cs" line="601" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <DisabledProjects>
+    <String>SymlinkMaker/Symlink Maker.csproj</String>
+    <String>SymlinkMaker/SymlinkMaker.csproj</String>
+    <String>SymlinkMaker.Operations/SymlinkMaker.Core.csproj</String>
+  </DisabledProjects>
+</Properties>

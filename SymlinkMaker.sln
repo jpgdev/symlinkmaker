@@ -1,0 +1,51 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+VisualStudioVersion = 12.0.30723.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SymlinkMaker.CLI", "SymlinkMaker.CLI\SymlinkMaker.CLI.csproj", "{25832402-95BD-44F0-BFFA-F458D0ED71F5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SymlinkMaker.GUI.WPF", "SymlinkMaker.GUI.WPF\SymlinkMaker.GUI.WPF.csproj", "{DD8E2D3B-7103-42B6-ABA8-24A3A47D7007}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SymlinkMaker.GUI.GTKSharp", "SymlinkMaker.GUI.GTKSharp\SymlinkMaker.GUI.GTKSharp.csproj", "{DDB0DBCA-5591-45F6-A598-DAF9E20864EA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SymlinkMaker.Core", "SymlinkMaker.Core\SymlinkMaker.Core.csproj", "{E739DEAD-33CB-4714-A485-83A0AAF6BE69}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5B0FE9A9-CD2B-404C-B175-146E276A7F04}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{25832402-95BD-44F0-BFFA-F458D0ED71F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{25832402-95BD-44F0-BFFA-F458D0ED71F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{25832402-95BD-44F0-BFFA-F458D0ED71F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{25832402-95BD-44F0-BFFA-F458D0ED71F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD8E2D3B-7103-42B6-ABA8-24A3A47D7007}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD8E2D3B-7103-42B6-ABA8-24A3A47D7007}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD8E2D3B-7103-42B6-ABA8-24A3A47D7007}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD8E2D3B-7103-42B6-ABA8-24A3A47D7007}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DDB0DBCA-5591-45F6-A598-DAF9E20864EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDB0DBCA-5591-45F6-A598-DAF9E20864EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDB0DBCA-5591-45F6-A598-DAF9E20864EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDB0DBCA-5591-45F6-A598-DAF9E20864EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E739DEAD-33CB-4714-A485-83A0AAF6BE69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E739DEAD-33CB-4714-A485-83A0AAF6BE69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E739DEAD-33CB-4714-A485-83A0AAF6BE69}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E739DEAD-33CB-4714-A485-83A0AAF6BE69}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E739DEAD-33CB-4714-A485-83A0AAF6BE69}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E739DEAD-33CB-4714-A485-83A0AAF6BE69}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E739DEAD-33CB-4714-A485-83A0AAF6BE69}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E739DEAD-33CB-4714-A485-83A0AAF6BE69}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

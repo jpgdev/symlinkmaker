@@ -1,0 +1,7 @@
+/home/jp/Projects/symlinkmaker/SymlinkMaker.GUI.GTKSharp/obj/Release/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/home/jp/Projects/symlinkmaker/SymlinkMaker.GUI.GTKSharp/obj/Release/SymlinkMaker.GUI.GTKSharp.gtk-gui.gui.stetic
+/home/jp/Projects/symlinkmaker/SymlinkMaker.GUI.GTKSharp/bin/Release/SymlinkMaker.GUI.GTKSharp.exe.mdb
+/home/jp/Projects/symlinkmaker/SymlinkMaker.GUI.GTKSharp/bin/Release/SymlinkMaker.GUI.GTKSharp.exe
+/home/jp/Projects/symlinkmaker/SymlinkMaker.GUI.GTKSharp/obj/Release/SymlinkMaker.GUI.GTKSharp.exe
+/home/jp/Projects/symlinkmaker/SymlinkMaker.GUI.GTKSharp/obj/Release/SymlinkMaker.GUI.GTKSharp.exe.mdb
+/home/jp/Projects/symlinkmaker/SymlinkMaker.GUI.GTKSharp/bin/Release/SymlinkMaker.Operations.dll

@@ -1,0 +1,5 @@
+/home/jp/Projects/symlinkmaker/SymlinkMaker.Operations/obj/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/home/jp/Projects/symlinkmaker/SymlinkMaker.Operations/bin/Debug/SymlinkMaker.Operations.dll.mdb
+/home/jp/Projects/symlinkmaker/SymlinkMaker.Operations/bin/Debug/SymlinkMaker.Operations.dll
+/home/jp/Projects/symlinkmaker/SymlinkMaker.Operations/obj/Debug/SymlinkMaker.Operations.dll
+/home/jp/Projects/symlinkmaker/SymlinkMaker.Operations/obj/Debug/SymlinkMaker.Operations.dll.mdb
