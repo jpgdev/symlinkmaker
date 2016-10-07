@@ -16,10 +16,10 @@ namespace SymlinkMaker.Core
 				case PlatformID.Win32Windows:
 				case PlatformID.WinCE:
 					return new WindowsFileOperations ();
-				case PlatformID.Unix:
-					return new UnixFileOperations ();
-				default:
-					return new BasicFileOperations ();
+                case PlatformID.Unix:
+                    return new UnixFileOperations();
+                default:
+                    return new BasicFileOperations();
 			}
 		}
 	}

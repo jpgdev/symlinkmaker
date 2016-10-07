@@ -8,47 +8,75 @@ namespace SymlinkMaker.GUI.GTKSharp
 		
 		private global::Gtk.Action Action;
 		
+		private global::Gtk.Action openAction;
+		
+		private global::Gtk.ToggleAction toggleConfirm;
+		
+		private global::Gtk.Action SettingsAction;
+		
+		private global::Gtk.ToggleAction toggleRequireConfirmAction;
+		
+		private global::Gtk.Action FileAction;
+		
+		private global::Gtk.Action HelpAction;
+		
+		private global::Gtk.Action aboutAction;
+		
 		private global::Gtk.VBox vboxBase;
 		
-		private global::Gtk.VBox vbox3;
+		private global::Gtk.MenuBar menubar;
 		
-		private global::Gtk.HBox hbox1;
+		private global::Gtk.VBox vbox7;
 		
-		private global::Gtk.Label lblSourcePath;
+		private global::Gtk.HBox hboxHeader;
+		
+		private global::Gtk.Label labelSource;
+		
+		private global::Gtk.Label labelTarget;
+		
+		private global::Gtk.HBox hboxMiddle;
+		
+		private global::Gtk.Button btnFindSource;
 		
 		private global::Gtk.Entry txtBoxSource;
 		
 		private global::Gtk.Image imgSourcePath;
 		
-		private global::Gtk.Button btnFindSource;
-		
-		private global::Gtk.Button btnOpenSource;
-		
-		private global::Gtk.HBox hbox2;
-		
-		private global::Gtk.Label lblTargetPath;
-		
-		private global::Gtk.Entry txtBoxTarget;
+		private global::Gtk.Arrow arrowPaths;
 		
 		private global::Gtk.Image imgTargetPath;
 		
 		private global::Gtk.Button btnFindTarget;
 		
-		private global::Gtk.Button btnOpenTarget;
+		private global::Gtk.Entry txtBoxTarget;
 		
-		private global::Gtk.HSeparator hseparator2;
+		private global::Gtk.HBox hboxBottom;
 		
-		private global::Gtk.HSeparator hseparator1;
+		private global::Gtk.VBox vboxSource;
 		
-		private global::Gtk.Button btnDoWhole;
+		private global::Gtk.HBox hboxSourceButtons;
 		
-		private global::Gtk.HBox hbox3;
-		
-		private global::Gtk.Button btnCopySource;
+		private global::Gtk.Button btnOpenSource;
 		
 		private global::Gtk.Button btnDeleteSource;
 		
+		private global::Gtk.VBox vboxButtons;
+		
+		private global::Gtk.Button btnMoveSource;
+		
+		private global::Gtk.Button btnCopySource;
+		
 		private global::Gtk.Button btnCreateSymlink;
+		
+		private global::Gtk.Button btnDoWhole;
+		
+		private global::Gtk.VBox vboxTarget;
+		
+		private global::Gtk.HBox hboxTargetButtons;
+		
+		private global::Gtk.Button btnDeleteTarget;
+		
+		private global::Gtk.Button btnOpenTarget;
 
 		protected virtual void Build ()
 		{
@@ -58,6 +86,26 @@ namespace SymlinkMaker.GUI.GTKSharp
 			global::Gtk.ActionGroup w1 = new global::Gtk.ActionGroup ("Default");
 			this.Action = new global::Gtk.Action ("Action", null, null, null);
 			w1.Add (this.Action, null);
+			this.openAction = new global::Gtk.Action ("openAction", null, null, "gtk-open");
+			w1.Add (this.openAction, null);
+			this.toggleConfirm = new global::Gtk.ToggleAction ("toggleConfirm", global::Mono.Unix.Catalog.GetString ("Confirm"), global::Mono.Unix.Catalog.GetString ("Ask before running a command"), "gtk-dialog-question");
+			this.toggleConfirm.ShortLabel = global::Mono.Unix.Catalog.GetString ("Require Confirm");
+			w1.Add (this.toggleConfirm, null);
+			this.SettingsAction = new global::Gtk.Action ("SettingsAction", global::Mono.Unix.Catalog.GetString ("Settings"), null, null);
+			this.SettingsAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Settings");
+			w1.Add (this.SettingsAction, null);
+			this.toggleRequireConfirmAction = new global::Gtk.ToggleAction ("toggleRequireConfirmAction", global::Mono.Unix.Catalog.GetString ("Always ask before running a command"), global::Mono.Unix.Catalog.GetString ("lways ask before running a command"), "gtk-dialog-question");
+			this.toggleRequireConfirmAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Require confirmation");
+			w1.Add (this.toggleRequireConfirmAction, null);
+			this.FileAction = new global::Gtk.Action ("FileAction", global::Mono.Unix.Catalog.GetString ("File"), null, null);
+			this.FileAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("File");
+			w1.Add (this.FileAction, null);
+			this.HelpAction = new global::Gtk.Action ("HelpAction", global::Mono.Unix.Catalog.GetString ("Help"), null, null);
+			this.HelpAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Help");
+			w1.Add (this.HelpAction, null);
+			this.aboutAction = new global::Gtk.Action ("aboutAction", global::Mono.Unix.Catalog.GetString ("About"), null, "gtk-about");
+			this.aboutAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("About");
+			w1.Add (this.aboutAction, null);
 			this.UIManager.InsertActionGroup (w1, 0);
 			this.AddAccelGroup (this.UIManager.AccelGroup);
 			this.Name = "SymlinkMaker.GUI.GTKSharp.MainWindow";
@@ -68,218 +116,297 @@ namespace SymlinkMaker.GUI.GTKSharp
 			this.vboxBase = new global::Gtk.VBox ();
 			this.vboxBase.Name = "vboxBase";
 			this.vboxBase.Spacing = 6;
-			this.vboxBase.BorderWidth = ((uint)(6));
 			// Container child vboxBase.Gtk.Box+BoxChild
-			this.vbox3 = new global::Gtk.VBox ();
-			this.vbox3.Name = "vbox3";
-			this.vbox3.Spacing = 6;
-			// Container child vbox3.Gtk.Box+BoxChild
-			this.hbox1 = new global::Gtk.HBox ();
-			this.hbox1.Name = "hbox1";
-			this.hbox1.Spacing = 6;
-			// Container child hbox1.Gtk.Box+BoxChild
-			this.lblSourcePath = new global::Gtk.Label ();
-			this.lblSourcePath.Name = "lblSourcePath";
-			this.lblSourcePath.LabelProp = global::Mono.Unix.Catalog.GetString ("Source path");
-			this.hbox1.Add (this.lblSourcePath);
-			global::Gtk.Box.BoxChild w2 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.lblSourcePath]));
+			this.UIManager.AddUiFromString ("<ui><menubar name='menubar'><menu name='FileAction' action='FileAction'/><menu name='SettingsAction' action='SettingsAction'><menuitem name='toggleRequireConfirmAction' action='toggleRequireConfirmAction'/></menu><menu name='HelpAction' action='HelpAction'><menuitem name='aboutAction' action='aboutAction'/></menu></menubar></ui>");
+			this.menubar = ((global::Gtk.MenuBar)(this.UIManager.GetWidget ("/menubar")));
+			this.menubar.Name = "menubar";
+			this.vboxBase.Add (this.menubar);
+			global::Gtk.Box.BoxChild w2 = ((global::Gtk.Box.BoxChild)(this.vboxBase [this.menubar]));
 			w2.Position = 0;
 			w2.Expand = false;
 			w2.Fill = false;
-			// Container child hbox1.Gtk.Box+BoxChild
+			// Container child vboxBase.Gtk.Box+BoxChild
+			this.vbox7 = new global::Gtk.VBox ();
+			this.vbox7.Name = "vbox7";
+			this.vbox7.Spacing = 6;
+			this.vbox7.BorderWidth = ((uint)(5));
+			// Container child vbox7.Gtk.Box+BoxChild
+			this.hboxHeader = new global::Gtk.HBox ();
+			this.hboxHeader.Name = "hboxHeader";
+			this.hboxHeader.Spacing = 6;
+			// Container child hboxHeader.Gtk.Box+BoxChild
+			this.labelSource = new global::Gtk.Label ();
+			this.labelSource.Name = "labelSource";
+			this.labelSource.LabelProp = global::Mono.Unix.Catalog.GetString ("<b>Source directory</b>");
+			this.labelSource.UseMarkup = true;
+			this.hboxHeader.Add (this.labelSource);
+			global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(this.hboxHeader [this.labelSource]));
+			w3.Position = 0;
+			w3.Padding = ((uint)(9));
+			// Container child hboxHeader.Gtk.Box+BoxChild
+			this.labelTarget = new global::Gtk.Label ();
+			this.labelTarget.Name = "labelTarget";
+			this.labelTarget.LabelProp = global::Mono.Unix.Catalog.GetString ("<b>Target directory</b>");
+			this.labelTarget.UseMarkup = true;
+			this.hboxHeader.Add (this.labelTarget);
+			global::Gtk.Box.BoxChild w4 = ((global::Gtk.Box.BoxChild)(this.hboxHeader [this.labelTarget]));
+			w4.PackType = ((global::Gtk.PackType)(1));
+			w4.Position = 2;
+			w4.Padding = ((uint)(8));
+			this.vbox7.Add (this.hboxHeader);
+			global::Gtk.Box.BoxChild w5 = ((global::Gtk.Box.BoxChild)(this.vbox7 [this.hboxHeader]));
+			w5.Position = 0;
+			w5.Expand = false;
+			w5.Fill = false;
+			// Container child vbox7.Gtk.Box+BoxChild
+			this.hboxMiddle = new global::Gtk.HBox ();
+			this.hboxMiddle.Name = "hboxMiddle";
+			this.hboxMiddle.Spacing = 6;
+			// Container child hboxMiddle.Gtk.Box+BoxChild
+			this.btnFindSource = new global::Gtk.Button ();
+			global::Gtk.Tooltips w6 = new Gtk.Tooltips ();
+			w6.SetTip (this.btnFindSource, "Find the source directory", "Find the source directory");
+			this.btnFindSource.CanFocus = true;
+			this.btnFindSource.Name = "btnFindSource";
+			this.btnFindSource.UseUnderline = true;
+			this.btnFindSource.Label = global::Mono.Unix.Catalog.GetString ("...");
+			this.hboxMiddle.Add (this.btnFindSource);
+			global::Gtk.Box.BoxChild w7 = ((global::Gtk.Box.BoxChild)(this.hboxMiddle [this.btnFindSource]));
+			w7.Position = 0;
+			w7.Expand = false;
+			w7.Fill = false;
+			// Container child hboxMiddle.Gtk.Box+BoxChild
 			this.txtBoxSource = new global::Gtk.Entry ();
 			this.txtBoxSource.CanFocus = true;
 			this.txtBoxSource.Name = "txtBoxSource";
 			this.txtBoxSource.IsEditable = true;
 			this.txtBoxSource.InvisibleChar = '●';
-			this.hbox1.Add (this.txtBoxSource);
-			global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.txtBoxSource]));
-			w3.Position = 1;
-			// Container child hbox1.Gtk.Box+BoxChild
+			this.hboxMiddle.Add (this.txtBoxSource);
+			global::Gtk.Box.BoxChild w8 = ((global::Gtk.Box.BoxChild)(this.hboxMiddle [this.txtBoxSource]));
+			w8.Position = 1;
+			// Container child hboxMiddle.Gtk.Box+BoxChild
 			this.imgSourcePath = new global::Gtk.Image ();
 			this.imgSourcePath.Name = "imgSourcePath";
-			this.imgSourcePath.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-apply", global::Gtk.IconSize.Menu);
-			this.hbox1.Add (this.imgSourcePath);
-			global::Gtk.Box.BoxChild w4 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.imgSourcePath]));
-			w4.Position = 2;
-			w4.Expand = false;
-			w4.Fill = false;
-			// Container child hbox1.Gtk.Box+BoxChild
-			this.btnFindSource = new global::Gtk.Button ();
-			this.btnFindSource.CanFocus = true;
-			this.btnFindSource.Name = "btnFindSource";
-			this.btnFindSource.UseUnderline = true;
-			this.btnFindSource.Label = global::Mono.Unix.Catalog.GetString ("Find");
-			global::Gtk.Image w5 = new global::Gtk.Image ();
-			w5.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-save-as", global::Gtk.IconSize.Menu);
-			this.btnFindSource.Image = w5;
-			this.hbox1.Add (this.btnFindSource);
-			global::Gtk.Box.BoxChild w6 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.btnFindSource]));
-			w6.Position = 3;
-			w6.Expand = false;
-			w6.Fill = false;
-			// Container child hbox1.Gtk.Box+BoxChild
-			this.btnOpenSource = new global::Gtk.Button ();
-			this.btnOpenSource.CanFocus = true;
-			this.btnOpenSource.Name = "btnOpenSource";
-			this.btnOpenSource.UseStock = true;
-			this.btnOpenSource.UseUnderline = true;
-			this.btnOpenSource.Label = "gtk-open";
-			this.hbox1.Add (this.btnOpenSource);
-			global::Gtk.Box.BoxChild w7 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.btnOpenSource]));
-			w7.Position = 4;
-			w7.Expand = false;
-			w7.Fill = false;
-			this.vbox3.Add (this.hbox1);
-			global::Gtk.Box.BoxChild w8 = ((global::Gtk.Box.BoxChild)(this.vbox3 [this.hbox1]));
-			w8.Position = 0;
-			w8.Expand = false;
-			w8.Fill = false;
-			// Container child vbox3.Gtk.Box+BoxChild
-			this.hbox2 = new global::Gtk.HBox ();
-			this.hbox2.Name = "hbox2";
-			this.hbox2.Spacing = 6;
-			// Container child hbox2.Gtk.Box+BoxChild
-			this.lblTargetPath = new global::Gtk.Label ();
-			this.lblTargetPath.Name = "lblTargetPath";
-			this.lblTargetPath.LabelProp = global::Mono.Unix.Catalog.GetString ("Target path");
-			this.hbox2.Add (this.lblTargetPath);
-			global::Gtk.Box.BoxChild w9 = ((global::Gtk.Box.BoxChild)(this.hbox2 [this.lblTargetPath]));
-			w9.Position = 0;
+			this.imgSourcePath.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-yes", global::Gtk.IconSize.Menu);
+			this.hboxMiddle.Add (this.imgSourcePath);
+			global::Gtk.Box.BoxChild w9 = ((global::Gtk.Box.BoxChild)(this.hboxMiddle [this.imgSourcePath]));
+			w9.Position = 2;
 			w9.Expand = false;
 			w9.Fill = false;
-			// Container child hbox2.Gtk.Box+BoxChild
+			// Container child hboxMiddle.Gtk.Box+BoxChild
+			this.arrowPaths = new global::Gtk.Arrow (((global::Gtk.ArrowType)(3)), ((global::Gtk.ShadowType)(4)));
+			this.arrowPaths.Name = "arrowPaths";
+			this.hboxMiddle.Add (this.arrowPaths);
+			global::Gtk.Box.BoxChild w10 = ((global::Gtk.Box.BoxChild)(this.hboxMiddle [this.arrowPaths]));
+			w10.Position = 3;
+			w10.Expand = false;
+			w10.Fill = false;
+			// Container child hboxMiddle.Gtk.Box+BoxChild
+			this.imgTargetPath = new global::Gtk.Image ();
+			this.imgTargetPath.Name = "imgTargetPath";
+			this.imgTargetPath.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-yes", global::Gtk.IconSize.Menu);
+			this.hboxMiddle.Add (this.imgTargetPath);
+			global::Gtk.Box.BoxChild w11 = ((global::Gtk.Box.BoxChild)(this.hboxMiddle [this.imgTargetPath]));
+			w11.Position = 4;
+			w11.Expand = false;
+			w11.Fill = false;
+			// Container child hboxMiddle.Gtk.Box+BoxChild
+			this.btnFindTarget = new global::Gtk.Button ();
+			w6.SetTip (this.btnFindTarget, "Find the target directory", "Find the target directory");
+			this.btnFindTarget.CanFocus = true;
+			this.btnFindTarget.Name = "btnFindTarget";
+			this.btnFindTarget.UseUnderline = true;
+			this.btnFindTarget.Label = global::Mono.Unix.Catalog.GetString ("...");
+			this.hboxMiddle.Add (this.btnFindTarget);
+			global::Gtk.Box.BoxChild w12 = ((global::Gtk.Box.BoxChild)(this.hboxMiddle [this.btnFindTarget]));
+			w12.PackType = ((global::Gtk.PackType)(1));
+			w12.Position = 5;
+			w12.Expand = false;
+			w12.Fill = false;
+			// Container child hboxMiddle.Gtk.Box+BoxChild
 			this.txtBoxTarget = new global::Gtk.Entry ();
 			this.txtBoxTarget.CanFocus = true;
 			this.txtBoxTarget.Name = "txtBoxTarget";
 			this.txtBoxTarget.IsEditable = true;
 			this.txtBoxTarget.InvisibleChar = '●';
-			this.hbox2.Add (this.txtBoxTarget);
-			global::Gtk.Box.BoxChild w10 = ((global::Gtk.Box.BoxChild)(this.hbox2 [this.txtBoxTarget]));
-			w10.Position = 1;
-			// Container child hbox2.Gtk.Box+BoxChild
-			this.imgTargetPath = new global::Gtk.Image ();
-			this.imgTargetPath.Name = "imgTargetPath";
-			this.imgTargetPath.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-apply", global::Gtk.IconSize.Menu);
-			this.hbox2.Add (this.imgTargetPath);
-			global::Gtk.Box.BoxChild w11 = ((global::Gtk.Box.BoxChild)(this.hbox2 [this.imgTargetPath]));
-			w11.Position = 2;
-			w11.Expand = false;
-			w11.Fill = false;
-			// Container child hbox2.Gtk.Box+BoxChild
-			this.btnFindTarget = new global::Gtk.Button ();
-			this.btnFindTarget.CanFocus = true;
-			this.btnFindTarget.Name = "btnFindTarget";
-			this.btnFindTarget.UseUnderline = true;
-			this.btnFindTarget.Label = global::Mono.Unix.Catalog.GetString ("Find");
-			global::Gtk.Image w12 = new global::Gtk.Image ();
-			w12.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-save-as", global::Gtk.IconSize.Menu);
-			this.btnFindTarget.Image = w12;
-			this.hbox2.Add (this.btnFindTarget);
-			global::Gtk.Box.BoxChild w13 = ((global::Gtk.Box.BoxChild)(this.hbox2 [this.btnFindTarget]));
-			w13.Position = 3;
-			w13.Expand = false;
-			w13.Fill = false;
-			// Container child hbox2.Gtk.Box+BoxChild
+			this.hboxMiddle.Add (this.txtBoxTarget);
+			global::Gtk.Box.BoxChild w13 = ((global::Gtk.Box.BoxChild)(this.hboxMiddle [this.txtBoxTarget]));
+			w13.PackType = ((global::Gtk.PackType)(1));
+			w13.Position = 6;
+			this.vbox7.Add (this.hboxMiddle);
+			global::Gtk.Box.BoxChild w14 = ((global::Gtk.Box.BoxChild)(this.vbox7 [this.hboxMiddle]));
+			w14.Position = 1;
+			w14.Expand = false;
+			w14.Fill = false;
+			// Container child vbox7.Gtk.Box+BoxChild
+			this.hboxBottom = new global::Gtk.HBox ();
+			this.hboxBottom.Name = "hboxBottom";
+			this.hboxBottom.Spacing = 6;
+			// Container child hboxBottom.Gtk.Box+BoxChild
+			this.vboxSource = new global::Gtk.VBox ();
+			this.vboxSource.Name = "vboxSource";
+			this.vboxSource.Spacing = 6;
+			// Container child vboxSource.Gtk.Box+BoxChild
+			this.hboxSourceButtons = new global::Gtk.HBox ();
+			this.hboxSourceButtons.Name = "hboxSourceButtons";
+			this.hboxSourceButtons.Spacing = 6;
+			// Container child hboxSourceButtons.Gtk.Box+BoxChild
+			this.btnOpenSource = new global::Gtk.Button ();
+			w6.SetTip (this.btnOpenSource, "Open the source directory with the File Explorer ", "Open the source directory with the File Explorer ");
+			this.btnOpenSource.CanFocus = true;
+			this.btnOpenSource.Name = "btnOpenSource";
+			this.btnOpenSource.UseStock = true;
+			this.btnOpenSource.UseUnderline = true;
+			this.btnOpenSource.Label = "gtk-open";
+			this.hboxSourceButtons.Add (this.btnOpenSource);
+			global::Gtk.Box.BoxChild w15 = ((global::Gtk.Box.BoxChild)(this.hboxSourceButtons [this.btnOpenSource]));
+			w15.Position = 0;
+			// Container child hboxSourceButtons.Gtk.Box+BoxChild
+			this.btnDeleteSource = new global::Gtk.Button ();
+			w6.SetTip (this.btnDeleteSource, "Delete the source directory", "Delete the source directory");
+			this.btnDeleteSource.CanFocus = true;
+			this.btnDeleteSource.Name = "btnDeleteSource";
+			this.btnDeleteSource.UseStock = true;
+			this.btnDeleteSource.UseUnderline = true;
+			this.btnDeleteSource.Label = "gtk-delete";
+			this.hboxSourceButtons.Add (this.btnDeleteSource);
+			global::Gtk.Box.BoxChild w16 = ((global::Gtk.Box.BoxChild)(this.hboxSourceButtons [this.btnDeleteSource]));
+			w16.Position = 1;
+			w16.Expand = false;
+			w16.Fill = false;
+			this.vboxSource.Add (this.hboxSourceButtons);
+			global::Gtk.Box.BoxChild w17 = ((global::Gtk.Box.BoxChild)(this.vboxSource [this.hboxSourceButtons]));
+			w17.Position = 0;
+			w17.Expand = false;
+			w17.Fill = false;
+			this.hboxBottom.Add (this.vboxSource);
+			global::Gtk.Box.BoxChild w18 = ((global::Gtk.Box.BoxChild)(this.hboxBottom [this.vboxSource]));
+			w18.Position = 0;
+			// Container child hboxBottom.Gtk.Box+BoxChild
+			this.vboxButtons = new global::Gtk.VBox ();
+			this.vboxButtons.Name = "vboxButtons";
+			this.vboxButtons.Spacing = 6;
+			// Container child vboxButtons.Gtk.Box+BoxChild
+			this.btnMoveSource = new global::Gtk.Button ();
+			w6.SetTip (this.btnMoveSource, "Move the source directory to the target location", "Move the source directory to the target location");
+			this.btnMoveSource.CanFocus = true;
+			this.btnMoveSource.Name = "btnMoveSource";
+			this.btnMoveSource.UseUnderline = true;
+			this.btnMoveSource.Label = "Move to";
+			global::Gtk.Image w19 = new global::Gtk.Image ();
+			w19.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-jump-to", global::Gtk.IconSize.Menu);
+			this.btnMoveSource.Image = w19;
+			this.vboxButtons.Add (this.btnMoveSource);
+			global::Gtk.Box.BoxChild w20 = ((global::Gtk.Box.BoxChild)(this.vboxButtons [this.btnMoveSource]));
+			w20.Position = 0;
+			w20.Expand = false;
+			w20.Fill = false;
+			// Container child vboxButtons.Gtk.Box+BoxChild
+			this.btnCopySource = new global::Gtk.Button ();
+			w6.SetTip (this.btnCopySource, "Copy the source to the target directory location", "Copy the source to the target directory location");
+			this.btnCopySource.CanFocus = true;
+			this.btnCopySource.Name = "btnCopySource";
+			this.btnCopySource.UseUnderline = true;
+			this.btnCopySource.Label = global::Mono.Unix.Catalog.GetString ("Copy to");
+			global::Gtk.Image w21 = new global::Gtk.Image ();
+			w21.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-copy", global::Gtk.IconSize.Menu);
+			this.btnCopySource.Image = w21;
+			this.vboxButtons.Add (this.btnCopySource);
+			global::Gtk.Box.BoxChild w22 = ((global::Gtk.Box.BoxChild)(this.vboxButtons [this.btnCopySource]));
+			w22.Position = 1;
+			w22.Expand = false;
+			w22.Fill = false;
+			// Container child vboxButtons.Gtk.Box+BoxChild
+			this.btnCreateSymlink = new global::Gtk.Button ();
+			w6.SetTip (this.btnCreateSymlink, "Create a symbolic link from the source to the target directory", "Create a symbolic link from the source to the target directory");
+			this.btnCreateSymlink.CanFocus = true;
+			this.btnCreateSymlink.Name = "btnCreateSymlink";
+			this.btnCreateSymlink.UseUnderline = true;
+			this.btnCreateSymlink.Label = global::Mono.Unix.Catalog.GetString ("Link to");
+			global::Gtk.Image w23 = new global::Gtk.Image ();
+			w23.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-goto-last", global::Gtk.IconSize.Menu);
+			this.btnCreateSymlink.Image = w23;
+			this.vboxButtons.Add (this.btnCreateSymlink);
+			global::Gtk.Box.BoxChild w24 = ((global::Gtk.Box.BoxChild)(this.vboxButtons [this.btnCreateSymlink]));
+			w24.Position = 2;
+			w24.Expand = false;
+			w24.Fill = false;
+			// Container child vboxButtons.Gtk.Box+BoxChild
+			this.btnDoWhole = new global::Gtk.Button ();
+			w6.SetTip (this.btnDoWhole, "Move the source directory to the target location and replace the source by a symbolic link to the newly created target", "Move the source directory to the target location and replace the source by a symbolic link to the newly created target");
+			this.btnDoWhole.CanFocus = true;
+			this.btnDoWhole.Name = "btnDoWhole";
+			this.btnDoWhole.UseUnderline = true;
+			this.btnDoWhole.Label = global::Mono.Unix.Catalog.GetString ("Move to and replace with link");
+			global::Gtk.Image w25 = new global::Gtk.Image ();
+			w25.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "gtk-convert", global::Gtk.IconSize.Menu);
+			this.btnDoWhole.Image = w25;
+			this.vboxButtons.Add (this.btnDoWhole);
+			global::Gtk.Box.BoxChild w26 = ((global::Gtk.Box.BoxChild)(this.vboxButtons [this.btnDoWhole]));
+			w26.Position = 3;
+			w26.Expand = false;
+			w26.Fill = false;
+			this.hboxBottom.Add (this.vboxButtons);
+			global::Gtk.Box.BoxChild w27 = ((global::Gtk.Box.BoxChild)(this.hboxBottom [this.vboxButtons]));
+			w27.Position = 1;
+			// Container child hboxBottom.Gtk.Box+BoxChild
+			this.vboxTarget = new global::Gtk.VBox ();
+			this.vboxTarget.Name = "vboxTarget";
+			this.vboxTarget.Spacing = 6;
+			// Container child vboxTarget.Gtk.Box+BoxChild
+			this.hboxTargetButtons = new global::Gtk.HBox ();
+			this.hboxTargetButtons.Name = "hboxTargetButtons";
+			this.hboxTargetButtons.Spacing = 6;
+			// Container child hboxTargetButtons.Gtk.Box+BoxChild
+			this.btnDeleteTarget = new global::Gtk.Button ();
+			w6.SetTip (this.btnDeleteTarget, "Delete the target directory", "Delete the target directory");
+			this.btnDeleteTarget.CanFocus = true;
+			this.btnDeleteTarget.Name = "btnDeleteTarget";
+			this.btnDeleteTarget.UseStock = true;
+			this.btnDeleteTarget.UseUnderline = true;
+			this.btnDeleteTarget.Label = "gtk-delete";
+			this.hboxTargetButtons.Add (this.btnDeleteTarget);
+			global::Gtk.Box.BoxChild w28 = ((global::Gtk.Box.BoxChild)(this.hboxTargetButtons [this.btnDeleteTarget]));
+			w28.Position = 0;
+			w28.Expand = false;
+			w28.Fill = false;
+			// Container child hboxTargetButtons.Gtk.Box+BoxChild
 			this.btnOpenTarget = new global::Gtk.Button ();
+			w6.SetTip (this.btnOpenTarget, "Open the target directory with the File Explorer", "Open the target directory with the File Explorer");
 			this.btnOpenTarget.CanFocus = true;
 			this.btnOpenTarget.Name = "btnOpenTarget";
 			this.btnOpenTarget.UseStock = true;
 			this.btnOpenTarget.UseUnderline = true;
 			this.btnOpenTarget.Label = "gtk-open";
-			this.hbox2.Add (this.btnOpenTarget);
-			global::Gtk.Box.BoxChild w14 = ((global::Gtk.Box.BoxChild)(this.hbox2 [this.btnOpenTarget]));
-			w14.Position = 4;
-			w14.Expand = false;
-			w14.Fill = false;
-			this.vbox3.Add (this.hbox2);
-			global::Gtk.Box.BoxChild w15 = ((global::Gtk.Box.BoxChild)(this.vbox3 [this.hbox2]));
-			w15.Position = 1;
-			w15.Expand = false;
-			w15.Fill = false;
-			this.vboxBase.Add (this.vbox3);
-			global::Gtk.Box.BoxChild w16 = ((global::Gtk.Box.BoxChild)(this.vboxBase [this.vbox3]));
-			w16.Position = 0;
-			w16.Expand = false;
-			w16.Fill = false;
-			// Container child vboxBase.Gtk.Box+BoxChild
-			this.hseparator2 = new global::Gtk.HSeparator ();
-			this.hseparator2.Name = "hseparator2";
-			this.vboxBase.Add (this.hseparator2);
-			global::Gtk.Box.BoxChild w17 = ((global::Gtk.Box.BoxChild)(this.vboxBase [this.hseparator2]));
-			w17.Position = 1;
-			w17.Expand = false;
-			w17.Fill = false;
-			// Container child vboxBase.Gtk.Box+BoxChild
-			this.hseparator1 = new global::Gtk.HSeparator ();
-			this.hseparator1.Name = "hseparator1";
-			this.vboxBase.Add (this.hseparator1);
-			global::Gtk.Box.BoxChild w18 = ((global::Gtk.Box.BoxChild)(this.vboxBase [this.hseparator1]));
-			w18.Position = 3;
-			w18.Expand = false;
-			w18.Fill = false;
-			// Container child vboxBase.Gtk.Box+BoxChild
-			this.btnDoWhole = new global::Gtk.Button ();
-			this.btnDoWhole.CanFocus = true;
-			this.btnDoWhole.Name = "btnDoWhole";
-			this.btnDoWhole.UseUnderline = true;
-			this.btnDoWhole.Label = global::Mono.Unix.Catalog.GetString ("Launch complete process");
-			this.vboxBase.Add (this.btnDoWhole);
-			global::Gtk.Box.BoxChild w19 = ((global::Gtk.Box.BoxChild)(this.vboxBase [this.btnDoWhole]));
-			w19.PackType = ((global::Gtk.PackType)(1));
-			w19.Position = 4;
-			w19.Expand = false;
-			w19.Fill = false;
-			// Container child vboxBase.Gtk.Box+BoxChild
-			this.hbox3 = new global::Gtk.HBox ();
-			this.hbox3.Name = "hbox3";
-			this.hbox3.Spacing = 6;
-			// Container child hbox3.Gtk.Box+BoxChild
-			this.btnCopySource = new global::Gtk.Button ();
-			this.btnCopySource.CanFocus = true;
-			this.btnCopySource.Name = "btnCopySource";
-			this.btnCopySource.UseUnderline = true;
-			this.btnCopySource.Label = global::Mono.Unix.Catalog.GetString ("Copy the source directory");
-			this.hbox3.Add (this.btnCopySource);
-			global::Gtk.Box.BoxChild w20 = ((global::Gtk.Box.BoxChild)(this.hbox3 [this.btnCopySource]));
-			w20.Position = 0;
-			w20.Expand = false;
-			w20.Fill = false;
-			// Container child hbox3.Gtk.Box+BoxChild
-			this.btnDeleteSource = new global::Gtk.Button ();
-			this.btnDeleteSource.CanFocus = true;
-			this.btnDeleteSource.Name = "btnDeleteSource";
-			this.btnDeleteSource.UseUnderline = true;
-			this.btnDeleteSource.Label = global::Mono.Unix.Catalog.GetString ("Delete the source directory");
-			this.hbox3.Add (this.btnDeleteSource);
-			global::Gtk.Box.BoxChild w21 = ((global::Gtk.Box.BoxChild)(this.hbox3 [this.btnDeleteSource]));
-			w21.Position = 1;
-			w21.Expand = false;
-			w21.Fill = false;
-			// Container child hbox3.Gtk.Box+BoxChild
-			this.btnCreateSymlink = new global::Gtk.Button ();
-			this.btnCreateSymlink.CanFocus = true;
-			this.btnCreateSymlink.Name = "btnCreateSymlink";
-			this.btnCreateSymlink.UseUnderline = true;
-			this.btnCreateSymlink.Label = global::Mono.Unix.Catalog.GetString ("Create the symbolic link");
-			this.hbox3.Add (this.btnCreateSymlink);
-			global::Gtk.Box.BoxChild w22 = ((global::Gtk.Box.BoxChild)(this.hbox3 [this.btnCreateSymlink]));
-			w22.Position = 2;
-			w22.Expand = false;
-			w22.Fill = false;
-			this.vboxBase.Add (this.hbox3);
-			global::Gtk.Box.BoxChild w23 = ((global::Gtk.Box.BoxChild)(this.vboxBase [this.hbox3]));
-			w23.PackType = ((global::Gtk.PackType)(1));
-			w23.Position = 5;
-			w23.Expand = false;
-			w23.Fill = false;
+			this.hboxTargetButtons.Add (this.btnOpenTarget);
+			global::Gtk.Box.BoxChild w29 = ((global::Gtk.Box.BoxChild)(this.hboxTargetButtons [this.btnOpenTarget]));
+			w29.Position = 1;
+			this.vboxTarget.Add (this.hboxTargetButtons);
+			global::Gtk.Box.BoxChild w30 = ((global::Gtk.Box.BoxChild)(this.vboxTarget [this.hboxTargetButtons]));
+			w30.Position = 0;
+			w30.Expand = false;
+			w30.Fill = false;
+			this.hboxBottom.Add (this.vboxTarget);
+			global::Gtk.Box.BoxChild w31 = ((global::Gtk.Box.BoxChild)(this.hboxBottom [this.vboxTarget]));
+			w31.Position = 2;
+			this.vbox7.Add (this.hboxBottom);
+			global::Gtk.Box.BoxChild w32 = ((global::Gtk.Box.BoxChild)(this.vbox7 [this.hboxBottom]));
+			w32.Position = 2;
+			w32.Expand = false;
+			w32.Fill = false;
+			this.vboxBase.Add (this.vbox7);
+			global::Gtk.Box.BoxChild w33 = ((global::Gtk.Box.BoxChild)(this.vboxBase [this.vbox7]));
+			w33.Position = 1;
+			w33.Expand = false;
+			w33.Fill = false;
 			this.Add (this.vboxBase);
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();
 			}
-			this.DefaultWidth = 569;
-			this.DefaultHeight = 202;
+			this.DefaultWidth = 886;
+			this.DefaultHeight = 238;
 			this.Show ();
+			this.aboutAction.Activated += new global::System.EventHandler (this.OnAboutActionActivated);
 		}
 	}
 }

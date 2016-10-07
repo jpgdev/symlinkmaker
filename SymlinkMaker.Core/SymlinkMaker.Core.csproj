@@ -29,6 +29,10 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="Mono.Posix" />
+    <Reference Include="System.Data" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -37,12 +41,22 @@
     <Compile Include="FileOperations\WindowsFileOperations.cs" />
     <Compile Include="FileOperations\BasicFileOperations.cs" />
     <Compile Include="FileOperations\IFileOperations.cs" />
-    <Compile Include="Commands\ICommand.cs" />
     <Compile Include="Commands\Command.cs" />
-    <Compile Include="Commands\ConfirmableCommand.cs" />
+    <Compile Include="Commands\CommandEventArgs.cs" />
+    <Compile Include="Commands\CommandType.cs" />
+    <Compile Include="Commands\CommandWrapper.cs" />
+    <Compile Include="Commands\CommandStatus.cs" />
+    <Compile Include="Commands\CommandExceptionEventArgs.cs" />
+    <Compile Include="Commands\FileCommands.cs" />
+    <Compile Include="AppSettings.cs" />
+    <Compile Include="Utils\Notifyable.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Commands\" />
+    <Folder Include="Utils\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>

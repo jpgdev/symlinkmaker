@@ -58,6 +58,8 @@ namespace SymlinkMaker.CLI
 
             public void DeleteDirectory (string path, bool recursive) {}
 
+            public void MoveDirectory (string sourceDirName, string targetDirName) { }
+
             public bool DirectoryExists (string path) { return true; }
         }
 
@@ -72,6 +74,10 @@ namespace SymlinkMaker.CLI
             }
 
             public void DeleteDirectory (string path, bool recursive) {
+                throw new Exception();
+            }
+
+            public void MoveDirectory (string sourceDirName, string targetDirName) {
                 throw new Exception();
             }
 

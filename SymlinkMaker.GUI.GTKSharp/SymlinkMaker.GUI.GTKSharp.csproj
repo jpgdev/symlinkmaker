@@ -48,6 +48,9 @@
       <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="Mono.Posix" />
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed">
+      <Package>monodevelop</Package>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">
@@ -60,8 +63,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="MainWindow.cs" />
     <Compile Include="gtk-gui\SymlinkMaker.GUI.GTKSharp.MainWindow.cs" />
-    <Compile Include="GtkSharpCommand.cs" />
-    <Compile Include="GtkSharpCommandConfirmationInfo.cs" />
+    <Compile Include="Commands\GtkSharpCommandConfirmationInfo.cs" />
+    <Compile Include="Commands\GtkSharpCommandWrapper.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
@@ -79,5 +82,8 @@
       <Project>{E739DEAD-33CB-4714-A485-83A0AAF6BE69}</Project>
       <Name>SymlinkMaker.Core</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Commands\" />
   </ItemGroup>
 </Project>

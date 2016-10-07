@@ -11,7 +11,7 @@ namespace SymlinkMaker.Core
         /// <param name="targetDirName">Target dir name.</param>
         public override void CreateSymbolicLink(string sourceDirName, string targetDirName)
         {
-            UnixDirectoryInfo dir = new UnixDirectoryInfo(targetDirName);
+            var dir = new UnixDirectoryInfo(targetDirName);
             dir.CreateSymbolicLink(sourceDirName);
         }
     }

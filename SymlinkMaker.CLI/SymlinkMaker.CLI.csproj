@@ -38,13 +38,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tests\ProgramTest.cs" />
     <Compile Include="ConsoleHelper.cs" />
-    <Compile Include="Commands\CLICommand.cs" />
-    <Compile Include="Commands\CommandInfo.cs" />
-    <Compile Include="Commands\CommandType.cs" />
+    <Compile Include="Commands\CLICommandWrapper.cs" />
+    <Compile Include="Commands\CLICommandInfo.cs" />
+    <Compile Include="Program.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>

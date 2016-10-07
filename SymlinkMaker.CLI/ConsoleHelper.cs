@@ -8,7 +8,8 @@ namespace SymlinkMaker.CLI
         /// Reads the key entered by the user.
         /// </summary>
         /// <returns>The key info.</returns>
-        public static ConsoleKeyInfo ReadKey(){
+        public static ConsoleKeyInfo ReadKey()
+        {
             return Console.ReadKey();
         }
 
@@ -92,6 +93,7 @@ namespace SymlinkMaker.CLI
             
             if (fgColor.HasValue)
                 Console.ForegroundColor = fgColor.Value;
+
             if (bgColor.HasValue)
                 Console.BackgroundColor = bgColor.Value;
             
@@ -101,4 +103,3 @@ namespace SymlinkMaker.CLI
         }
     }
 }
-
