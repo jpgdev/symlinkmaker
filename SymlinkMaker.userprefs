@@ -2,17 +2,7 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="SymlinkMaker.GUI/Controllers/MainWindowController.cs">
     <Files>
-      <File FileName="SymlinkMaker.GUI.GTKSharp/Control Wrappers/GtkSharpButton.cs" Line="1" Column="1" />
-      <File FileName="SymlinkMaker.GUI.GTKSharp/Control Wrappers/GtkSharpControl.cs" Line="1" Column="1" />
-      <File FileName="SymlinkMaker.GUI.GTKSharp/Control Wrappers/GtkSharpImage.cs" Line="1" Column="1" />
-      <File FileName="SymlinkMaker.GUI.GTKSharp/Control Wrappers/GtkSharpTextEntry.cs" Line="1" Column="1" />
-      <File FileName="SymlinkMaker.GUI.GTKSharp/Control Wrappers/GtkSharpToggleAction.cs" Line="1" Column="1" />
-      <File FileName="SymlinkMaker.GUI.GTKSharp/Control Wrappers/GtkSharpToggleButton.cs" Line="1" Column="1" />
-      <File FileName="SymlinkMaker.GUI.GTKSharp/Control Wrappers/GtkSharpWindow.cs" Line="1" Column="1" />
-      <File FileName="SymlinkMaker.GUI.GTKSharp/Utilities/GtkIconNameConverter.cs" Line="1" Column="1" />
-      <File FileName="SymlinkMaker.GUI.GTKSharp/Utilities/GtkSharpDialogHelper.cs" Line="1" Column="1" />
-      <File FileName="SymlinkMaker.GUI.GTKSharp/Utilities/IGtkIconNameConverter.cs" Line="5" Column="55" />
-      <File FileName="SymlinkMaker.GUI/Controllers/MainWindowController.cs" Line="159" Column="1" />
+      <File FileName="SymlinkMaker.GUI/Controllers/MainWindowController.cs" Line="164" Column="26" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

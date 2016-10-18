@@ -1,6 +1,6 @@
 # # C# binairies
-*bin/
-*obj/
+# *bin/
+# *obj/
 #
 #
 # # NUnit tests results
@@ -8,7 +8,7 @@
 
 
 # VS Code & CoreCLR files
-.vscode
+.vscode/
 packages/
 project.json
 project.lock.json

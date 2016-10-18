@@ -42,7 +42,7 @@ This is actually the initial coupled version, which has not yet changed since I'
 
 ### Gtk# version
 
-![Gtk# Screenshot](screenshots/gtk#.png)
+![Gtk# Screenshot](screenshots/gtk-sharp.png)
 
 ### CLI version
 
