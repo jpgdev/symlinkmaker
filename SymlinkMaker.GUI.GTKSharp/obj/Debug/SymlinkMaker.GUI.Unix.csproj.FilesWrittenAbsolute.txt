@@ -1,8 +1,0 @@
-/home/jp/Projects/symlinkmaker/SymlinkMaker.GUI.Unix/obj/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
-/home/jp/Projects/symlinkmaker/SymlinkMaker.GUI.Unix/obj/Debug/SymlinkMaker.GUI.Unix.gtk-gui.gui.stetic
-/home/jp/Projects/symlinkmaker/SymlinkMaker.GUI.Unix/bin/Debug/SymlinkMaker.GUI.Unix.exe.mdb
-/home/jp/Projects/symlinkmaker/SymlinkMaker.GUI.Unix/bin/Debug/SymlinkMaker.GUI.Unix.exe
-/home/jp/Projects/symlinkmaker/SymlinkMaker.GUI.Unix/obj/Debug/SymlinkMaker.GUI.Unix.exe
-/home/jp/Projects/symlinkmaker/SymlinkMaker.GUI.Unix/obj/Debug/SymlinkMaker.GUI.Unix.exe.mdb
-/home/jp/Projects/symlinkmaker/SymlinkMaker.GUI.Unix/bin/Debug/SymlinkMakerOperations.dll
-/home/jp/Projects/symlinkmaker/SymlinkMaker.GUI.Unix/bin/Debug/SymlinkMakerOperations.dll.mdb

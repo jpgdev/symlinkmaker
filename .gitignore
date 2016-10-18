@@ -1,19 +1,25 @@
-# # C# binairies
-# *bin/
-# *obj/
-#
-#
-# # NUnit tests results
-# *TestResult.xml
-
-
-# VS Code & CoreCLR files
+# VS Code
 .vscode/
-packages/
-project.json
-project.lock.json
 
-# Created by https://www.gitignore.io/api/csharp,visualstudio,monodevelop
+# Created by https://www.gitignore.io/api/visualstudio,visualstudiocode,monodevelop,csharp
+
+### VisualStudioCode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+
+
+### MonoDevelop ###
+#User Specific
+*.userprefs
+*.usertasks
+
+#Mono Project Files
+*.pidb
+*.resources
+test-results/
+
 
 ### Csharp ###
 ## Ignore Visual Studio temporary files, build results, and
@@ -26,7 +32,6 @@ project.lock.json
 *.sln.docstates
 
 # User-specific files (MonoDevelop/Xamarin Studio)
-*.userprefs
 
 # Build results
 [Dd]ebug/
@@ -84,7 +89,6 @@ artifacts/
 *.vspscc
 *.vssscc
 .builds
-*.pidb
 *.svclog
 *.scc
 
@@ -284,15 +288,6 @@ __pycache__/
 
 # Cake - Uncomment if you are using it
 # tools/
-
-
-### MonoDevelop ###
-#User Specific
-*.usertasks
-
-#Mono Project Files
-*.resources
-test-results/
 
 
 ### VisualStudio ###
