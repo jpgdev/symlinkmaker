@@ -3,17 +3,17 @@ using SymlinkMaker.Core;
 
 namespace SymlinkMaker.CLI
 {
-    // TODO : Rename this? since it has no connection to the Command object?
-    internal struct CLICommandInfo
+    // TODO : Rename this? since it has almost no connection to the Command object?
+    public struct CLICommandInfo
     {
         public CommandType Type;
         public IDictionary<string, string> Arguments;
-        public bool RequireConfirm; // TODO : Move into args?
+        public bool RequiresConfirm; // TODO : Move into args?
 
-        public CLICommandInfo (CommandType type, IDictionary<string, string> args, bool requireConfirm){
+        public CLICommandInfo (CommandType type, IDictionary<string, string> args, bool requiresConfirm){
             Type = type;
             Arguments = args;
-            RequireConfirm = requireConfirm;
+            RequiresConfirm = requiresConfirm;
         }
     }
 }

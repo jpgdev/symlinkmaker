@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D1BAAAF6-EBFF-4506-9925-7A3080BA6BD6}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>SymlinkMaker.Core.Tests</RootNamespace>
+    <AssemblyName>SymlinkMaker.Core.Tests</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="nunit.framework">
+      <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Core">
+      <HintPath>..\packages\Castle.Core.3.3.3\lib\net45\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Moq">
+      <HintPath>..\packages\Moq.4.5.23\lib\net45\Moq.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Commands\CommandTests.cs" />
+    <Compile Include="Commands\FileCommandsLoaderTests.cs" />
+    <Compile Include="FileOperations\PerOSFileOperationsLocatorTests.cs" />
+    <Compile Include="Commands\CommandAdapterTests.cs" />
+    <Compile Include="FileOperations\DirectoryOperationsTests.cs" />
+    <Compile Include="Utilities\AppSettings\AppSettingsTests.cs" />
+    <Compile Include="Utilities\FirstMatchLocatorTests.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Commands\" />
+    <Folder Include="FileOperations\" />
+    <Folder Include="Utilities\" />
+    <Folder Include="Utilities\AppSettings\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SymlinkMaker.Core\SymlinkMaker.Core.csproj">
+      <Project>{E739DEAD-33CB-4714-A485-83A0AAF6BE69}</Project>
+      <Name>SymlinkMaker.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+</Project>

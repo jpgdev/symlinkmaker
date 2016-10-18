@@ -4,4 +4,4 @@
 /home/jp/Projects/symlinkmaker/SymlinkMaker.GUI.GTKSharp/bin/Release/SymlinkMaker.GUI.GTKSharp.exe
 /home/jp/Projects/symlinkmaker/SymlinkMaker.GUI.GTKSharp/obj/Release/SymlinkMaker.GUI.GTKSharp.exe
 /home/jp/Projects/symlinkmaker/SymlinkMaker.GUI.GTKSharp/obj/Release/SymlinkMaker.GUI.GTKSharp.exe.mdb
-/home/jp/Projects/symlinkmaker/SymlinkMaker.GUI.GTKSharp/bin/Release/SymlinkMaker.Operations.dll
+/home/jp/Projects/symlinkmaker/SymlinkMaker.GUI.GTKSharp/bin/Release/SymlinkMaker.Core.dll

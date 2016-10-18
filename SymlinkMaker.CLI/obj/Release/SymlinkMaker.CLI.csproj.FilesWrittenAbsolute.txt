@@ -1,6 +1,5 @@
 /home/jp/Projects/symlinkmaker/SymlinkMaker.CLI/obj/Release/.NETFramework,Version=v4.5.AssemblyAttribute.cs
 /home/jp/Projects/symlinkmaker/SymlinkMaker.CLI/bin/Release/SymlinkMaker.CLI.exe
 /home/jp/Projects/symlinkmaker/SymlinkMaker.CLI/obj/Release/SymlinkMaker.CLI.exe
-/home/jp/Projects/symlinkmaker/SymlinkMaker.CLI/bin/Release/nunit.framework.dll
 /home/jp/Projects/symlinkmaker/SymlinkMaker.CLI/bin/Release/Mono.Options.dll
-/home/jp/Projects/symlinkmaker/SymlinkMaker.CLI/bin/Release/SymlinkMaker.Operations.dll
+/home/jp/Projects/symlinkmaker/SymlinkMaker.CLI/bin/Release/SymlinkMaker.Core.dll

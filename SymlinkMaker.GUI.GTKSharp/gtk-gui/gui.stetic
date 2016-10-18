@@ -2,30 +2,20 @@
 <stetic-interface>
   <configuration>
     <images-root-path>..</images-root-path>
+    <target-gtk-version>2.12</target-gtk-version>
   </configuration>
   <import>
     <widget-library name="glade-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <widget-library name="MonoDevelop.Ide, Version=2.6.0.0, Culture=neutral" />
+    <widget-library name="MonoDevelop.VersionControl, Version=2.6.0.0, Culture=neutral" />
     <widget-library name="../bin/Debug/SymlinkMaker.GUI.GTKSharp.exe" internal="true" />
   </import>
-  <widget class="Gtk.Window" id="SymlinkMaker.GUI.GTKSharp.MainWindow" design-size="886 238">
+  <widget class="Gtk.Window" id="SymlinkMaker.GUI.GTKSharp.MainWindowView" design-size="886 267">
     <action-group name="Default">
-      <action id="Action">
-        <property name="Type">Action</property>
-        <property name="Label" translatable="yes" />
-      </action>
       <action id="openAction">
         <property name="Type">Action</property>
         <property name="Label" translatable="yes" />
         <property name="StockId">gtk-open</property>
-      </action>
-      <action id="toggleConfirm">
-        <property name="Type">Toggle</property>
-        <property name="Label" translatable="yes">Confirm</property>
-        <property name="ShortLabel" translatable="yes">Require Confirm</property>
-        <property name="StockId">gtk-dialog-question</property>
-        <property name="Tooltip" translatable="yes">Ask before running a command</property>
-        <property name="DrawAsRadio">False</property>
-        <property name="Active">False</property>
       </action>
       <action id="SettingsAction">
         <property name="Type">Action</property>
@@ -56,7 +46,58 @@
         <property name="Label" translatable="yes">About</property>
         <property name="ShortLabel" translatable="yes">About</property>
         <property name="StockId">gtk-about</property>
-        <signal name="Activated" handler="OnAboutActionActivated" />
+      </action>
+      <action id="EditAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Edit</property>
+        <property name="ShortLabel" translatable="yes">Edit</property>
+      </action>
+      <action id="copyAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">_Copy</property>
+        <property name="ShortLabel" translatable="yes">_Copy</property>
+        <property name="StockId">gtk-copy</property>
+      </action>
+      <action id="cutAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">Cu_t</property>
+        <property name="ShortLabel" translatable="yes">Cu_t</property>
+        <property name="StockId">gtk-cut</property>
+      </action>
+      <action id="pasteAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">_Paste</property>
+        <property name="ShortLabel" translatable="yes">_Paste</property>
+        <property name="StockId">gtk-paste</property>
+      </action>
+      <action id="undoAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">_Undo</property>
+        <property name="ShortLabel" translatable="yes">_Undo</property>
+        <property name="StockId">gtk-undo</property>
+      </action>
+      <action id="redoAction">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes" />
+        <property name="StockId">gtk-redo</property>
+      </action>
+      <action id="undoAction1">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">_Undo</property>
+        <property name="ShortLabel" translatable="yes">_Undo</property>
+        <property name="StockId">gtk-undo</property>
+      </action>
+      <action id="redoAction1">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">_Redo</property>
+        <property name="ShortLabel" translatable="yes">_Redo</property>
+        <property name="StockId">gtk-redo</property>
+      </action>
+      <action id="redoAction2">
+        <property name="Type">Action</property>
+        <property name="Label" translatable="yes">_Redo</property>
+        <property name="ShortLabel" translatable="yes">_Redo</property>
+        <property name="StockId">gtk-redo</property>
       </action>
     </action-group>
     <property name="MemberName" />
@@ -72,6 +113,13 @@
             <property name="MemberName" />
             <node name="menubar" type="Menubar">
               <node type="Menu" action="FileAction" />
+              <node type="Menu" action="EditAction">
+                <node type="Menuitem" action="copyAction" />
+                <node type="Menuitem" action="cutAction" />
+                <node type="Menuitem" action="pasteAction" />
+                <node type="Menuitem" action="undoAction1" />
+                <node type="Menuitem" action="redoAction2" />
+              </node>
               <node type="Menu" action="SettingsAction">
                 <node type="Menuitem" action="toggleRequireConfirmAction" />
               </node>
@@ -88,7 +136,7 @@
           </packing>
         </child>
         <child>
-          <widget class="Gtk.VBox" id="vbox7">
+          <widget class="Gtk.VBox" id="vboxContent">
             <property name="MemberName" />
             <property name="Spacing">6</property>
             <property name="BorderWidth">5</property>
@@ -451,6 +499,18 @@
           </widget>
           <packing>
             <property name="Position">1</property>
+            <property name="AutoSize">True</property>
+            <property name="Expand">False</property>
+            <property name="Fill">False</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="Gtk.HSeparator" id="hseparator1">
+            <property name="MemberName" />
+          </widget>
+          <packing>
+            <property name="PackType">End</property>
+            <property name="Position">2</property>
             <property name="AutoSize">True</property>
             <property name="Expand">False</property>
             <property name="Fill">False</property>

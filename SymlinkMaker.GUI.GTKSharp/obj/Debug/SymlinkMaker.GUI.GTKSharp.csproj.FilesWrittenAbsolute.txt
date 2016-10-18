@@ -6,3 +6,5 @@
 /home/jp/Projects/symlinkmaker/SymlinkMaker.GUI.GTKSharp/obj/Debug/SymlinkMaker.GUI.GTKSharp.exe.mdb
 /home/jp/Projects/symlinkmaker/SymlinkMaker.GUI.GTKSharp/bin/Debug/SymlinkMaker.Core.dll
 /home/jp/Projects/symlinkmaker/SymlinkMaker.GUI.GTKSharp/bin/Debug/SymlinkMaker.Core.dll.mdb
+/home/jp/Projects/symlinkmaker/SymlinkMaker.GUI.GTKSharp/bin/Debug/SymlinkMaker.GUI.dll
+/home/jp/Projects/symlinkmaker/SymlinkMaker.GUI.GTKSharp/bin/Debug/SymlinkMaker.GUI.dll.mdb

@@ -10,7 +10,7 @@ namespace SymlinkMaker.GUI.GTKSharp
         public string[] DialogTitleArgsNames { get; set; }
 
         /// <summary>
-        /// Stores infos for the <see cref="SymlinkMaker.GUI.GTKSharp.GtkSharpCommandWrapper"/> confirmation message.
+        /// Stores infos for the <see cref="SymlinkMaker.GUI.GTKSharp.GtkSharpCommandLoader"/> confirmation message.
         /// </summary>
         /// <param name="message">Message.</param>
         /// <param name="messageArgsNames">Message arguments names.</param>

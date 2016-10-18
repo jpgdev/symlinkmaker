@@ -1,5 +1,4 @@
-﻿
-/*
+﻿/*
  *  IDEAs/TODOs: 
  * 
  *         Add a Undo/Revert() function. 
@@ -8,8 +7,8 @@
  *              a simple RevertFunc(args) which does the opposite operation (might be the right one, since we change the FileSystem).
  * 
  *         Add an exception parser in the Run()->catch? 
- *              So it would be parsed per command, not per wrapper? 
- *              This way the exception parsing is not repeated for each wrapper.
+ *              So it would be parsed per command, not per adapter? 
+ *              This way the exception parsing is not repeated for each adapter.
  *              Note : Might want to create it out of the commands, 
  *                     since the errors can be the same for mutliple commands.
  *
@@ -18,20 +17,26 @@
  *                    Change the message to : "The file already exists." (i18n too)
  */
 
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace SymlinkMaker.Core
 {
-    public class Command
+    // TODO : Rename to Operation OR Job OR something else??
+
+    //        Since it does not implement the Command Pattern,
+    //        it is a weird name to use.
+
+    public class Command : ICommand
     {
+        #region Properties
+
         /// <summary>
         /// Gets the function to run as the actual command.
         /// </summary>
         /// <value>The command func.</value>
-        protected Func<IDictionary<string, string>, bool> CommandFunc { get; private set; }
+        protected Operation Operation { get; private set; }
 
         /// <summary>
         /// Gets or sets the function ran before the actual command.
@@ -39,125 +44,204 @@ namespace SymlinkMaker.Core
         /// <remarks>
         /// If the function returns false, the command will not be ran.
         /// </remarks>
-        /// <value>The before run func.</value>
-        /// 
-        public Func<IDictionary<string, string>, bool> BeforeRunFunc // TODO : Find a better name
-        { 
-            get; 
-            set; 
-        }
+        /// <value>The function to run before running the actual command.</value>
+        protected Operation PreRunValidation { get; private set; }
 
         protected string[] RequiredArguments { get; set; }
 
-        public delegate void CommandEventHandler(Command command,CommandEventArgs cmdEventArgs);
+        #endregion
 
-        public delegate void CommandExceptionEventHandler(Command command,CommandExceptionEventArgs cmdEventArgs);
+        #region Events
 
-        public event CommandEventHandler OnSuccess;
-        public event CommandEventHandler OnFailure;
-        public event CommandEventHandler OnFinish;
-        public event CommandExceptionEventHandler OnException;
+        public event CommandEventHandler Succeeded;
+        public event CommandEventHandler Failed;
+        public event CommandEventHandler Finished;
+        public event CommandExceptionEventHandler ExceptionThrown;
+
+        #endregion
+
+        #region Constructors
 
         public Command(
-            Func<IDictionary<string, string>, bool> commandFunc,
+            Operation commandFunc,
             string[] requiredArguments = null)
             : this(commandFunc, null, requiredArguments)
         {
         }
 
         public Command(
-            Func<IDictionary<string, string>, bool> commandFunc,
-            Func<IDictionary<string, string>, bool> beforeRunFunc,
+            Operation operation,
+            Operation preRunValidator,
             string[] requiredArguments = null)
         {
-            if (commandFunc == null)
-                throw new ArgumentNullException("commandFunc");
 
-            CommandFunc = commandFunc;
-            BeforeRunFunc = beforeRunFunc;
+            if (operation == null)
+                throw new ArgumentNullException(nameof(operation));
+
+            Operation = operation;
             RequiredArguments = requiredArguments;
+
+            InitializePreRunValidation(preRunValidator);
         }
 
-        /// <summary>
-        /// Run the command without any arguments.
-        /// </summary>
-        /// <exception cref="System.ArgumentException">Thrown by <see cref="SymlinkMaker.Core.Command.ValidateRequiredArguments"/> if required arguments are missing</exception> 
-        public bool Run()
+        #endregion
+
+        private void InitializePreRunValidation(Operation preRunValidator)
         {
-            return Run(null);
+            if (RequiredArguments != null)
+                PreRunValidation = GetRequiredArgsValidator(RequiredArguments);
+            
+            PreRunValidation += preRunValidator;
         }
 
-        /// <summary>
-        /// Run the command with the specified args.
-        /// </summary>
-        /// <exception cref="System.ArgumentException">Thrown by <see cref="SymlinkMaker.Core.Command.ValidateRequiredArguments"/> if required arguments are missing</exception> 
-        /// <param name="args">Arguments for the command.</param>
+        #region Notify Event Subscribers
+
+        // Note:
+        // I don't know how I can find a parameter type that can encapsulate
+        // both the CommandEventHandler & CommandExceptionEventHandler
+        // to merge these functions
+
+        protected void NotifyEventSubscribers(CommandEventHandler eventHandler,
+                                              IDictionary<string, string> args,
+                                              CommandStatus status)
+        {
+            if (eventHandler == null)
+                return;
+
+            NotifyEventSubscribers(
+                eventHandler,
+                new CommandEventArgs(args, status)
+            );
+        }
+
+        protected void NotifyEventSubscribers(CommandEventHandler eventHandler,
+                                              CommandEventArgs commandEventArgs)
+        {
+            if (eventHandler == null)
+                return;
+            
+            eventHandler(this, commandEventArgs);
+        }
+
+
+        protected void NotifyEventSubscribers(CommandExceptionEventHandler eventHandler,
+                                              IDictionary<string, string> args,
+                                              Exception exception,
+                                              CommandStatus status)
+        {
+            if (eventHandler == null)
+                return;
+
+            NotifyEventSubscribers(
+                eventHandler,
+                new CommandExceptionEventArgs(args, exception, status)
+            );
+        }
+
+        protected void NotifyEventSubscribers(CommandExceptionEventHandler eventHandler,
+                                              CommandExceptionEventArgs commandEventArgs)
+        {
+            if (eventHandler == null)
+                return;
+            
+            eventHandler(this, commandEventArgs);
+        }
+
+        #endregion
+
+        #region Methods
+
+        public void RegisterPreRunValidation(Operation preRunValidation)
+        {
+            if (preRunValidation == null)
+                return;
+
+            PreRunValidation += preRunValidation;
+        }
+
+        public void UnregisterPreRunValidation(Operation preRunValidation)
+        {
+            if (PreRunValidation != null &&
+                PreRunValidation.GetInvocationList().Contains(preRunValidation))
+            {
+                PreRunValidation -= preRunValidation;
+            }
+        }
+
         public bool Run(IDictionary<string, string> args)
         {
+            CommandStatus currentStatus = CommandStatus.PreRun;
             try
             {
-                ValidateRequiredArguments(args, RequiredArguments);
-
-                // If we need another validation (Can be used to confirm)
-                if (BeforeRunFunc != null && !BeforeRunFunc(args))
+                if (!RunValidationsFunctions(args))
                     return false;
 
-                bool result = CommandFunc(args);
+                currentStatus = CommandStatus.Running;
+                bool result = Operation(args);
                 if (result)
                 {
-                    if (OnSuccess != null)
-                        OnSuccess(this, new CommandEventArgs(args, CommandStatus.Success));
+                    currentStatus = CommandStatus.Succeeded;
+                    NotifyEventSubscribers(Succeeded, args, currentStatus);
                 }
                 else
                 {
-                    if (OnFailure != null)
-                        OnFailure(this, new CommandEventArgs(args, CommandStatus.Failed));
+                    currentStatus = CommandStatus.Failed;
+                    NotifyEventSubscribers(Failed, args, currentStatus);
                 }
 
-                // Add the result boolean to the EventArgs params?
-                if (OnFinish != null)
-                    OnFinish(this, new CommandEventArgs(args, CommandStatus.Success));
+                NotifyEventSubscribers(Finished, args, currentStatus);
 
                 return result;
             }
             catch (Exception ex)
             {
-                if (OnException == null)
+                if (ExceptionThrown == null)
                     throw;
 
-                OnException(this, new CommandExceptionEventArgs(args, ex));
+                NotifyEventSubscribers(
+                    ExceptionThrown,
+                    args,
+                    ex,
+                    currentStatus);
 
-                // TODO : also call OnFailure????
                 return false;
             }
-            // finally
-            // {                    
-            //     HandleCleanup(args);
-            // }
-
         }
 
-        /// <summary>
-        /// Validates that all the required arguments are provided. 
-        /// </summary>
-        /// <exception cref="System.ArgumentException">Thrown when there are missing required arguments.</exception>
-        /// <param name="args">The arguments provided.</param>
-        /// <param name="requiredArguments">Required arguments.</param>
-        public static void ValidateRequiredArguments(IDictionary<string, string> args, IEnumerable<string> requiredArguments = null)
+        private bool RunValidationsFunctions(IDictionary<string, string> args)
         {
-            if (requiredArguments == null)
-                return;
+            if (PreRunValidation == null)
+                return true;
+            
+            var validationFuncs = PreRunValidation.GetInvocationList();
 
-            IEnumerable<string> missingArgs = requiredArguments.Where(arg =>
-                !args.ContainsKey(arg));
-
-            if (missingArgs.Any())
-            {
-                throw new ArgumentException(
-                    string.Format("Missing command arguments : {0}",
-                        string.Join(",", missingArgs)));
-            }
+            return validationFuncs.All(
+                func => (func as Operation)(args)
+            );
         }
 
+        private static Operation GetRequiredArgsValidator(IEnumerable<string> requiredArguments)
+        {
+            return args =>
+            {
+                if (requiredArguments == null)
+                    return true;
+                
+                if (args == null)
+                    throw new ArgumentNullException(nameof(args));
+
+                var missingArgs = requiredArguments.Where(arg => !args.ContainsKey(arg));
+                if (missingArgs.Any())
+                {
+                    throw new ArgumentException(
+                        string.Format(
+                            "Missing command arguments : {0}",
+                            string.Join(",", missingArgs)));
+                }
+                return true;
+            };
+        }
+
+        #endregion
     }
 }

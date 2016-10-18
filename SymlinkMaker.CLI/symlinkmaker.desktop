@@ -1,0 +1,11 @@
+
+[Desktop Entry]
+Encoding=UTF-8
+Type=Application
+Name=symlinkmaker
+Exec=symlinkmaker.cli
+Terminal=true
+
+GenericName=Symlink Maker
+Comment=Small program to manage symbolic link and copies.
+Categories=Settings;Utility;Archiving;FileTools;FileTools;System;

@@ -29,34 +29,48 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="Mono.Posix" />
-    <Reference Include="System.Data" />
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="FileOperations\FileOperationsFactory.cs" />
-    <Compile Include="FileOperations\UnixFileOperations.cs" />
-    <Compile Include="FileOperations\WindowsFileOperations.cs" />
-    <Compile Include="FileOperations\BasicFileOperations.cs" />
-    <Compile Include="FileOperations\IFileOperations.cs" />
+    <Compile Include="Commands\Events\CommandEventArgs.cs" />
+    <Compile Include="Commands\Events\CommandExceptionEventArgs.cs" />
+    <Compile Include="Commands\ICommandAdapterLoader.cs" />
+    <Compile Include="Commands\CommandAdapter.cs" />
+    <Compile Include="Commands\FileCommandsLoader.cs" />
+    <Compile Include="FileSystemManagers\IDirectory.cs" />
+    <Compile Include="FileSystemManagers\IFile.cs" />
     <Compile Include="Commands\Command.cs" />
-    <Compile Include="Commands\CommandEventArgs.cs" />
-    <Compile Include="Commands\CommandType.cs" />
-    <Compile Include="Commands\CommandWrapper.cs" />
-    <Compile Include="Commands\CommandStatus.cs" />
-    <Compile Include="Commands\CommandExceptionEventArgs.cs" />
-    <Compile Include="Commands\FileCommands.cs" />
-    <Compile Include="AppSettings.cs" />
-    <Compile Include="Utils\Notifyable.cs" />
+    <Compile Include="Commands\ICommand.cs" />
+    <Compile Include="Commands\Enums\CommandType.cs" />
+    <Compile Include="Commands\Enums\CommandStatus.cs" />
+    <Compile Include="FileSystemOperations\IFileSystemOperations.cs" />
+    <Compile Include="FileSystemOperations\WindowsDirectoryOperations.cs" />
+    <Compile Include="FileSystemOperations\UnixDirectoryOperations.cs" />
+    <Compile Include="FileSystemOperations\DirectoryOperations.cs" />
+    <Compile Include="AppSettings\AppSettings.cs" />
+    <Compile Include="AppSettings\DefaultAppSettingsLoader.cs" />
+    <Compile Include="FileSystemOperations\FileSystemOperationsLocator.cs" />
+    <Compile Include="FileSystemManagers\SystemDirectory.cs" />
+    <Compile Include="FileSystemManagers\SystemFileManager.cs" />
+    <Compile Include="AppBase\IRunnableApplication.cs" />
+    <Compile Include="AppBase\RunnableApplicationBase.cs" />
+    <Compile Include="Commands\ICommandsLoader.cs" />
+    <Compile Include="Commands\ICommandsManager.cs" />
+    <Compile Include="Commands\CommandsManager.cs" />
+    <Compile Include="AppSettings\IAppSettingsLoader.cs" />
+    <Compile Include="Utilities\Notifier.cs" />
+    <Compile Include="Utilities\FirstMatchLocator.cs" />
+    <Compile Include="Utilities\PredicateLocator.cs" />
+    <Compile Include="Utilities\ILocator.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Commands\" />
-    <Folder Include="Utils\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
+    <Folder Include="Commands\Events\" />
+    <Folder Include="FileSystemManagers\" />
+    <Folder Include="Commands\Enums\" />
+    <Folder Include="AppBase\" />
+    <Folder Include="AppSettings\" />
+    <Folder Include="Utilities\" />
   </ItemGroup>
 </Project>
