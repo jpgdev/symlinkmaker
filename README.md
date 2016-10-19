@@ -38,7 +38,7 @@ It also combines the `Move` & `Create symlink` function for the actual **main** 
 
 ![WPF Screenshot](screenshots/wpf.PNG)
 
-This is actually the initial coupled version, which has not yet changed since I'm only on Linux right now, so even if I change the code, I would'nt be able to test it.
+This is actually the initial coupled version, which has not yet changed since I'm only on Linux right now, so even if I change the code, I wouldn't be able to test it.
 
 ### Gtk# version
 
