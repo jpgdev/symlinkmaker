@@ -35,7 +35,7 @@ namespace SymlinkMaker.GUI.GTKSharp
             BaseAction.Toggled += ToggleButton_Toggled;
         }
 
-        ~GtkSharpToggleAction()
+        public void Dispose()
         {
             BaseAction.Toggled -= ToggleButton_Toggled;
         }

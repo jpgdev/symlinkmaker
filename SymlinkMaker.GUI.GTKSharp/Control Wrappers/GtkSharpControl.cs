@@ -3,7 +3,7 @@ using System;
 
 namespace SymlinkMaker.GUI.GTKSharp
 {
-    public abstract class GtkSharpControl  : IControl
+    public abstract class GtkSharpControl : IControl, IDisposable
     {
         protected Widget BaseWidget { get; private set; }
 
@@ -20,6 +20,12 @@ namespace SymlinkMaker.GUI.GTKSharp
 
             BaseWidget = widget;
         }
+
+        #region IDisposable implementation
+
+        public virtual void Dispose() { }
+
+        #endregion
     }
 }
 

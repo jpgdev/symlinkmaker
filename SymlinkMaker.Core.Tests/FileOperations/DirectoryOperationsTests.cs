@@ -36,12 +36,7 @@ namespace SymlinkMaker.Core.Tests
                 CallBase = true
             };
         }
-
-        [TestFixtureTearDown]
-        public void AfterAllTearDown()
-        {
-        }
-
+      
         [SetUp]
         public void BeforeEachSetUp()
         {

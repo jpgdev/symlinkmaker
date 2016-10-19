@@ -32,25 +32,25 @@
     <Reference Include="nunit.framework">
       <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
     </Reference>
-    <Reference Include="atk-sharp, Version=3.0.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
-    <Reference Include="gtk-sharp, Version=3.0.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <Reference Include="Castle.Core">
       <HintPath>..\packages\Castle.Core.3.3.3\lib\net45\Castle.Core.dll</HintPath>
     </Reference>
     <Reference Include="Moq">
       <HintPath>..\packages\Moq.4.5.23\lib\net45\Moq.dll</HintPath>
     </Reference>
-    <Reference Include="glib-sharp, Version=3.0.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <Reference Include="atk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <Reference Include="gdk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <Reference Include="glib-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <Reference Include="glade-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <Reference Include="pango-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <Reference Include="Mono.Posix" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SymlinkMaker.GUI.GTKSharp\SymlinkMaker.GUI.GTKSharp.csproj">
-      <Project>{DDB0DBCA-5591-45F6-A598-DAF9E20864EA}</Project>
-      <Name>SymlinkMaker.GUI.GTKSharp</Name>
-    </ProjectReference>
     <ProjectReference Include="..\SymlinkMaker.GUI\SymlinkMaker.GUI.csproj">
       <Project>{B676AA21-1DCA-410A-94B1-323D01719B28}</Project>
       <Name>SymlinkMaker.GUI</Name>
@@ -59,12 +59,22 @@
       <Project>{E739DEAD-33CB-4714-A485-83A0AAF6BE69}</Project>
       <Name>SymlinkMaker.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SymlinkMaker.GUI.GTKSharp\SymlinkMaker.GUI.GTKSharp.csproj">
+      <Project>{DDB0DBCA-5591-45F6-A598-DAF9E20864EA}</Project>
+      <Name>SymlinkMaker.GUI.GTKSharp</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Control Wrappers\GtkSharpButtonTests.cs" />
     <Compile Include="Commands\GtkSharpCommandAdapterTests.cs" />
     <Compile Include="Commands\GtkSharpCommandsAdapterLoader.cs" />
     <Compile Include="Utilities\GtkIconNameConverterTests.cs" />
+    <Compile Include="Control Wrappers\GtkSharpControlTests.cs" />
+    <Compile Include="Control Wrappers\GtkSharpImageTests.cs" />
+    <Compile Include="Control Wrappers\GtkSharpTextEntryTests.cs" />
+    <Compile Include="Control Wrappers\GtkSharpToggleButtonTests.cs" />
+    <Compile Include="Control Wrappers\GtkSharpToggleActionTests.cs" />
+    <Compile Include="Control Wrappers\GtkSharpWindowTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Control Wrappers\" />

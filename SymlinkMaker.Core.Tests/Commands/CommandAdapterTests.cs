@@ -37,12 +37,6 @@ namespace SymlinkMaker.Core.Tests
         [Test]
         public void Run_WhenRequireConfirmationIsTrue_ShouldAddConfirmationHandlerToCommand()
         {
-//            // Add fake confirmationHandler
-//            _commandAdapterMock.Protected().Setup<bool>(
-//                "ConfirmationHandler", 
-//                ItExpr.IsAny<IDictionary<string, string>>()
-//            ).Returns(true);
-
             _commandAdapterMock.Object.Run(null, true);
 
             _commandMock.Verify(

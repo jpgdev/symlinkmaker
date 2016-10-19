@@ -2,6 +2,7 @@
 using System;
 using Gdk;
 using Image = Gtk.Image;
+using System.Diagnostics;
 
 namespace SymlinkMaker.GUI.GTKSharp
 {
@@ -53,6 +54,8 @@ namespace SymlinkMaker.GUI.GTKSharp
 
             _iconNameConverter = iconNameConverter;
             _gtkName = _iconNameConverter.GetGtkNameFromImageName(name);
+
+            SetImagePixbuf(_gtkName);
         }
 
         private void SetImagePixbuf(string gtkName)
@@ -64,7 +67,6 @@ namespace SymlinkMaker.GUI.GTKSharp
         {
             return Stetic.IconLoader.LoadIcon(BaseWidget, name, size);
         }
-
     }
 }
 

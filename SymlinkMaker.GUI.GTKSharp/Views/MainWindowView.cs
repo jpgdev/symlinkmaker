@@ -45,7 +45,7 @@ namespace SymlinkMaker.GUI.GTKSharp
         {
             if (iconNameConverter == null)
                 throw new ArgumentNullException(nameof(iconNameConverter));
-            
+
             this.Build();
 
             // Image

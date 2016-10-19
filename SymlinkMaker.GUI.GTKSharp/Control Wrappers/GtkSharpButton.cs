@@ -18,9 +18,10 @@ namespace SymlinkMaker.GUI.GTKSharp
             BaseWidget.Clicked += Button_Clicked;
         }
 
-        ~GtkSharpButton()
+        public override void Dispose()
         {
             BaseWidget.Clicked -= Button_Clicked;
+            base.Dispose();
         }
 
         private void Button_Clicked(object sender, EventArgs e)

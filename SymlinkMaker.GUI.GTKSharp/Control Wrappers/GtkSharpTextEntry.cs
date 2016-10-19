@@ -24,7 +24,7 @@ namespace SymlinkMaker.GUI.GTKSharp
             BaseWidget.Changed += BaseWidget_Changed;
         }
 
-        ~GtkSharpTextEntry()
+        public override void Dispose()
         {
             BaseWidget.Changed -= BaseWidget_Changed;   
         }

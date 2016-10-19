@@ -10,15 +10,15 @@ namespace SymlinkMaker.GUI.GTKSharp
         public GtkSharpWindow(WindowType type)
             :base(type)
         {
-            Destroyed += MainWindowView_DestroyEvent;
+            Destroyed += Window_DestroyedEvent;
         }
 
-        ~GtkSharpWindow()
+        public override void Dispose()
         {
-            Destroyed -= MainWindowView_DestroyEvent;
+            Destroyed -= Window_DestroyedEvent;
         }
 
-        public void MainWindowView_DestroyEvent(object o, EventArgs args)
+        public void Window_DestroyedEvent(object o, EventArgs args)
         {
             if (Closed != null)
                 Closed(this, args);

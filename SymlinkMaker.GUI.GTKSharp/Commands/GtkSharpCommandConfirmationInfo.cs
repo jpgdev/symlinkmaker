@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace SymlinkMaker.GUI.GTKSharp
+﻿namespace SymlinkMaker.GUI.GTKSharp
 {
     public struct GtkSharpCommandConfirmationInfo
     {
