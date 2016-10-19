@@ -56,9 +56,5 @@
       <Project>{B676AA21-1DCA-410A-94B1-323D01719B28}</Project>
       <Name>SymlinkMaker.GUI</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SymlinkMaker.GUI.GTKSharp\SymlinkMaker.GUI.GTKSharp.csproj">
-      <Project>{DDB0DBCA-5591-45F6-A598-DAF9E20864EA}</Project>
-      <Name>SymlinkMaker.GUI.GTKSharp</Name>
-    </ProjectReference>
   </ItemGroup>
 </Project>

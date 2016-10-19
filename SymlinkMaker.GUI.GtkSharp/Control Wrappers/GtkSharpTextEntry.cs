@@ -1,7 +1,7 @@
 ﻿using Gtk;
 using System;
 
-namespace SymlinkMaker.GUI.GTKSharp
+namespace SymlinkMaker.GUI.GtkSharp
 {
     public class GtkSharpTextEntry : GtkSharpControl, ITextSource
     {

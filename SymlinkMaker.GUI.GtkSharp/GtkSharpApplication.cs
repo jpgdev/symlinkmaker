@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Gtk;
 
-namespace SymlinkMaker.GUI.GTKSharp
+namespace SymlinkMaker.GUI.GtkSharp
 {
     public class GtkSharpApplication : RunnableApplicationBase
     {

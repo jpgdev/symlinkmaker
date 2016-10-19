@@ -1,5 +1,5 @@
 ﻿using NUnit.Framework;
-using SymlinkMaker.GUI.GTKSharp;
+using SymlinkMaker.GUI.GtkSharp;
 using Gtk;
 using System;
 

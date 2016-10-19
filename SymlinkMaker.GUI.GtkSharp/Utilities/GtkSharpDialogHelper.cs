@@ -1,7 +1,7 @@
 ﻿using System;
 using Gtk;
 
-namespace SymlinkMaker.GUI.GTKSharp
+namespace SymlinkMaker.GUI.GtkSharp
 {
     public class GtkSharpDialogHelper : IDialogHelper
     {

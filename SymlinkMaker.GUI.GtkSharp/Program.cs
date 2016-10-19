@@ -1,6 +1,6 @@
 ﻿using SymlinkMaker.Core;
 
-namespace SymlinkMaker.GUI.GTKSharp
+namespace SymlinkMaker.GUI.GtkSharp
 {
     class MainClass
     {

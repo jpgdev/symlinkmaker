@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace SymlinkMaker.GUI.GTKSharp
+namespace SymlinkMaker.GUI.GtkSharp
 {
     public class GtkIconNameConverter : IGtkIconNameConverter
     {

@@ -5,8 +5,6 @@ VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SymlinkMaker.CLI", "SymlinkMaker.CLI\SymlinkMaker.CLI.csproj", "{25832402-95BD-44F0-BFFA-F458D0ED71F5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SymlinkMaker.GUI.GTKSharp", "SymlinkMaker.GUI.GTKSharp\SymlinkMaker.GUI.GTKSharp.csproj", "{DDB0DBCA-5591-45F6-A598-DAF9E20864EA}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SymlinkMaker.Core", "SymlinkMaker.Core\SymlinkMaker.Core.csproj", "{E739DEAD-33CB-4714-A485-83A0AAF6BE69}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5B0FE9A9-CD2B-404C-B175-146E276A7F04}"
@@ -23,6 +21,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SymlinkMaker.GUI.Tests", "SymlinkMaker.GUI.Tests\SymlinkMaker.GUI.Tests.csproj", "{99D3CD3E-8432-42DD-99A0-38BC0CE8250B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SymlinkMaker.GUI.GtkSharp.Tests", "SymlinkMaker.GUI.GtkSharp.Tests\SymlinkMaker.GUI.GtkSharp.Tests.csproj", "{715708FE-DA8B-4A97-98C7-2805D5A8DA37}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SymlinkMaker.GUI.GtkSharp", "SymlinkMaker.GUI.GtkSharp\SymlinkMaker.GUI.GtkSharp.csproj", "{DDB0DBCA-5591-45F6-A598-DAF9E20864EA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,6 +1,6 @@
 ﻿using Moq;
 using NUnit.Framework;
-using SymlinkMaker.GUI.GTKSharp;
+using SymlinkMaker.GUI.GtkSharp;
 using System;
 using SymlinkMaker.Core;
 using System.Collections.Generic;

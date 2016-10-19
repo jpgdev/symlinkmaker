@@ -1,4 +1,4 @@
-﻿namespace SymlinkMaker.GUI.GTKSharp
+﻿namespace SymlinkMaker.GUI.GtkSharp
 {
     public interface IGtkIconNameConverter
     {

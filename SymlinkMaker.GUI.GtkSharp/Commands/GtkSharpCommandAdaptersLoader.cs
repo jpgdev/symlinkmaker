@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using SymlinkMaker.Core;
 
-namespace SymlinkMaker.GUI.GTKSharp
+namespace SymlinkMaker.GUI.GtkSharp
 {
     public class GtkSharpCommandAdaptersLoader : ICommandAdaptersLoader
     {

@@ -2,15 +2,14 @@
 using System;
 using Gdk;
 using Image = Gtk.Image;
-using System.Diagnostics;
 
-namespace SymlinkMaker.GUI.GTKSharp
+namespace SymlinkMaker.GUI.GtkSharp
 {
     public class GtkSharpImage : GtkSharpControl, IImage
     {
         #region Fields
 
-        private readonly string _gtkName;
+        private string _gtkName;
         private readonly IGtkIconNameConverter _iconNameConverter;
 
         #endregion
@@ -34,6 +33,7 @@ namespace SymlinkMaker.GUI.GTKSharp
                 if (_gtkName == newPath)
                     return;
                 
+                _gtkName = newPath;
                 SetImagePixbuf(newPath);
             }
         }

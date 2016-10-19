@@ -315,6 +315,9 @@ namespace SymlinkMaker.GUI
 
             string imgTooltip = exists ? "This location is occupied" : "This location is free";
 
+            // This is used since the Target path & Source path expect different icons
+            // for the same status. 
+            // Ex: If a directory exists, the source is green, but the target is red
             if (invertImages)
                 exists = !exists;
 

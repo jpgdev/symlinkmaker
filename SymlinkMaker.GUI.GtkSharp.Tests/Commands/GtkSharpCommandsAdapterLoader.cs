@@ -2,7 +2,7 @@
 using NUnit.Framework;
 using System.Collections.Generic;
 using SymlinkMaker.Core;
-using SymlinkMaker.GUI.GTKSharp;
+using SymlinkMaker.GUI.GtkSharp;
 using System;
 
 namespace SymlinkMaker.GUI.GtkSharp.Tests
