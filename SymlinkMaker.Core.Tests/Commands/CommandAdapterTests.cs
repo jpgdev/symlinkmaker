@@ -35,12 +35,12 @@ namespace SymlinkMaker.Core.Tests
         #region Run method tests
 
         [Test]
-        public void Run_WhenRequireConfirmationIsTrue_ShouldAddConfirmationHandlerToCommand()
+        public void Execute_WhenRequireConfirmationIsTrue_ShouldAddConfirmationHandlerToCommand()
         {
-            _commandAdapterMock.Object.Run(null, true);
+            _commandAdapterMock.Object.Execute(null, true);
 
             _commandMock.Verify(
-                command => command.RegisterPreRunValidation(
+                command => command.RegisterPreExecutionValidation(
                     It.IsAny<Operation>()
                 ),
                 Times.Once
@@ -48,12 +48,12 @@ namespace SymlinkMaker.Core.Tests
         }
 
         [Test]
-        public void Run_WhenRequireConfirmationIsFalse_ShouldNotAddConfirmationHandlerToCommand()
+        public void Execute_WhenRequireConfirmationIsFalse_ShouldNotAddConfirmationHandlerToCommand()
         {
-            _commandAdapterMock.Object.Run(null, false);
+            _commandAdapterMock.Object.Execute(null, false);
 
             _commandMock.Verify(
-                command => command.RegisterPreRunValidation(
+                command => command.RegisterPreExecutionValidation(
                     It.IsAny<Operation>()
                 ),
                 Times.Never
@@ -61,20 +61,20 @@ namespace SymlinkMaker.Core.Tests
         }
 
         [Test]
-        public void Run_WhenRequireConfirmationIsTrue_ShouldOnlyHaveASingleConfirmationHandlerInCommand()
+        public void Execute_WhenRequireConfirmationIsTrue_ShouldOnlyHaveASingleConfirmationHandlerInCommand()
         {
-            _commandAdapterMock.Object.Run(null, true);
-            _commandAdapterMock.Object.Run(null, true);
+            _commandAdapterMock.Object.Execute(null, true);
+            _commandAdapterMock.Object.Execute(null, true);
 
             _commandMock.Verify(
-                command => command.RegisterPreRunValidation(
+                command => command.RegisterPreExecutionValidation(
                     It.IsAny<Operation>()
                 ),
                 Times.Exactly(2)
             );
 
             _commandMock.Verify(
-                command => command.UnregisterPreRunValidation(
+                command => command.UnregisterPreExecutionValidation(
                     It.IsAny<Operation>()
                 ),
                 Times.Exactly(2)
@@ -82,20 +82,20 @@ namespace SymlinkMaker.Core.Tests
         }
 
         [Test]
-        public void Run_WhenRequireConfirmationIsChangedfromTrueToFalse_ShouldOnlyNotHaveAConfirmationHandlerInCommand()
+        public void Execute_WhenRequireConfirmationIsChangedfromTrueToFalse_ShouldOnlyNotHaveAConfirmationHandlerInCommand()
         {
-            _commandAdapterMock.Object.Run(null, true);
-            _commandAdapterMock.Object.Run(null, false);
+            _commandAdapterMock.Object.Execute(null, true);
+            _commandAdapterMock.Object.Execute(null, false);
 
             _commandMock.Verify(
-                command => command.RegisterPreRunValidation(
+                command => command.RegisterPreExecutionValidation(
                     It.IsAny<Operation>()
                 ),
                 Times.Once
             );
 
             _commandMock.Verify(
-                command => command.UnregisterPreRunValidation(
+                command => command.UnregisterPreExecutionValidation(
                     It.IsAny<Operation>()
                 ),
                 Times.Exactly(2)
@@ -115,7 +115,7 @@ namespace SymlinkMaker.Core.Tests
            
             // Check that before Dispose(), the Unregister has never been called.
             tmpCommandMock.Verify(
-                command => command.UnregisterPreRunValidation(
+                command => command.UnregisterPreExecutionValidation(
                     It.IsAny<Operation>()
                 ),
                 Times.Never
@@ -127,7 +127,7 @@ namespace SymlinkMaker.Core.Tests
             //        UnregisterPreRunValidation is the ConfirmationHandler,
             //        It could be another Operation
             tmpCommandMock.Verify(
-                command => command.UnregisterPreRunValidation(
+                command => command.UnregisterPreExecutionValidation(
                     It.IsAny<Operation>()
                 ),
                 Times.Once

@@ -60,7 +60,7 @@ namespace SymlinkMaker.GUI.GtkSharp.Tests
         {
             _commandMock.SetupAllProperties();
             _commandMock
-                .Setup(c => c.RegisterPreRunValidation(It.IsAny<Operation>()))
+                .Setup(c => c.RegisterPreExecutionValidation(It.IsAny<Operation>()))
                 .Callback<Operation>(op => _confirmationHandlerOperation = op);
             
             _commandAdapter = new GtkSharpCommandAdapter(
@@ -110,9 +110,9 @@ namespace SymlinkMaker.GUI.GtkSharp.Tests
          * + Add cases where args are needed but are null
          */
         [Test]
-        public void Run_WhenRequiresConfirmIsTrue_ShouldShowConfirmDialogWithCorrectContent()
+        public void Execute_WhenRequiresConfirmIsTrue_ShouldShowConfirmDialogWithCorrectContent()
         {
-            _commandAdapter.Run(_basicArguments, true);
+            _commandAdapter.Execute(_basicArguments, true);
             _confirmationHandlerOperation(_basicArguments);
 
             _dialogHelper.Verify
@@ -129,9 +129,9 @@ namespace SymlinkMaker.GUI.GtkSharp.Tests
         }
 
         [Test]
-        public void Run_WhenRequiresConfirmIsTrue_ShouldShowConfirmDialogWithCorrectTitle()
+        public void Execute_WhenRequiresConfirmIsTrue_ShouldShowConfirmDialogWithCorrectTitle()
         {
-            _commandAdapter.Run(_basicArguments, true);
+            _commandAdapter.Execute(_basicArguments, true);
             _confirmationHandlerOperation(_basicArguments);
 
             _dialogHelper.Verify

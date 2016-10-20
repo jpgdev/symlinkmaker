@@ -22,10 +22,10 @@
       </action>
       <action id="toggleRequireConfirmAction">
         <property name="Type">Toggle</property>
-        <property name="Label" translatable="yes">Always ask before running a command</property>
+        <property name="Label" translatable="yes">Always ask before executing a command</property>
         <property name="ShortLabel" translatable="yes">Require confirmation</property>
         <property name="StockId">gtk-dialog-question</property>
-        <property name="Tooltip" translatable="yes">lways ask before running a command</property>
+        <property name="Tooltip" translatable="yes">Always ask before executing a command</property>
         <property name="DrawAsRadio">False</property>
         <property name="Active">False</property>
       </action>

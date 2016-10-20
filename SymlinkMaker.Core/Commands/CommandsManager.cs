@@ -15,7 +15,7 @@ namespace SymlinkMaker.Core
             _commands = commands;
         }
 
-        public bool Run(
+        public bool Execute(
             CommandType type, 
             string sourcePath = null, 
             string targetPath = null, 
@@ -29,16 +29,16 @@ namespace SymlinkMaker.Core
             if (!string.IsNullOrEmpty(targetPath))
                 args["targetPath"] = targetPath; 
 
-            return Run(type, args, requiresConfirmation);
+            return Execute(type, args, requiresConfirmation);
         }
 
-        public bool Run(
+        public bool Execute(
             CommandType type, 
             Dictionary<string, string> args,
             bool requiresConfirmation = true)
         {
             // TODO : When the Get is changed, use it to retrieve the command
-            return _commands[type].Run(args, requiresConfirmation);
+            return _commands[type].Execute(args, requiresConfirmation);
         }
 
         // TODO : Change this when the ICommandAdapter are changed to ICommandDecorator

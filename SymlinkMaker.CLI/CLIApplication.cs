@@ -74,7 +74,7 @@ namespace SymlinkMaker.CLI
             if (!Commands.ContainsKey(info.Type))
                 throw new ArgumentException(string.Format("'{0}' is not an existing command.", info.Type));
 
-            return Commands[info.Type].Run(info.Arguments, info.RequiresConfirm);
+            return Commands[info.Type].Execute(info.Arguments, info.RequiresConfirm);
         }
 
         #endregion

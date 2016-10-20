@@ -33,7 +33,7 @@ namespace SymlinkMaker.Core
         #region Properties
 
         /// <summary>
-        /// Gets the function to run as the actual command.
+        /// Gets the delegate to execute. 
         /// </summary>
         /// <value>The command func.</value>
         protected Operation Operation { get; private set; }
@@ -44,8 +44,8 @@ namespace SymlinkMaker.Core
         /// <remarks>
         /// If the function returns false, the command will not be ran.
         /// </remarks>
-        /// <value>The function to run before running the actual command.</value>
-        protected Operation PreRunValidation { get; private set; }
+        /// <value>The function to execute before executing the actual command.</value>
+        protected Operation PreExecutionValidation { get; private set; }
 
         protected string[] RequiredArguments { get; set; }
 
@@ -71,7 +71,7 @@ namespace SymlinkMaker.Core
 
         public Command(
             Operation operation,
-            Operation preRunValidator,
+            Operation preExecuteValidator,
             string[] requiredArguments = null)
         {
 
@@ -81,17 +81,17 @@ namespace SymlinkMaker.Core
             Operation = operation;
             RequiredArguments = requiredArguments;
 
-            InitializePreRunValidation(preRunValidator);
+            InitializePreExecutionValidation(preExecuteValidator);
         }
 
         #endregion
 
-        private void InitializePreRunValidation(Operation preRunValidator)
+        private void InitializePreExecutionValidation(Operation preRunValidator)
         {
             if (RequiredArguments != null)
-                PreRunValidation = GetRequiredArgsValidator(RequiredArguments);
+                PreExecutionValidation = GetRequiredArgsValidator(RequiredArguments);
             
-            PreRunValidation += preRunValidator;
+            PreExecutionValidation += preRunValidator;
         }
 
         #region Notify Event Subscribers
@@ -151,29 +151,29 @@ namespace SymlinkMaker.Core
 
         #region Methods
 
-        public void RegisterPreRunValidation(Operation preRunValidation)
+        public void RegisterPreExecutionValidation(Operation preRunValidation)
         {
             if (preRunValidation == null)
                 return;
 
-            PreRunValidation += preRunValidation;
+            PreExecutionValidation += preRunValidation;
         }
 
-        public void UnregisterPreRunValidation(Operation preRunValidation)
+        public void UnregisterPreExecutionValidation(Operation preRunValidation)
         {
-            if (PreRunValidation != null &&
-                PreRunValidation.GetInvocationList().Contains(preRunValidation))
+            if (PreExecutionValidation != null &&
+                PreExecutionValidation.GetInvocationList().Contains(preRunValidation))
             {
-                PreRunValidation -= preRunValidation;
+                PreExecutionValidation -= preRunValidation;
             }
         }
 
-        public bool Run(IDictionary<string, string> args)
+        public bool Execute(IDictionary<string, string> args)
         {
             CommandStatus currentStatus = CommandStatus.PreRun;
             try
             {
-                if (!RunValidationsFunctions(args))
+                if (!ExecuteValidationsFunctions(args))
                     return false;
 
                 currentStatus = CommandStatus.Running;
@@ -208,12 +208,12 @@ namespace SymlinkMaker.Core
             }
         }
 
-        private bool RunValidationsFunctions(IDictionary<string, string> args)
+        private bool ExecuteValidationsFunctions(IDictionary<string, string> args)
         {
-            if (PreRunValidation == null)
+            if (PreExecutionValidation == null)
                 return true;
             
-            var validationFuncs = PreRunValidation.GetInvocationList();
+            var validationFuncs = PreExecutionValidation.GetInvocationList();
 
             return validationFuncs.All(
                 func => (func as Operation)(args)

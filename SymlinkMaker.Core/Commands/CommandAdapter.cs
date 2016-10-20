@@ -28,7 +28,7 @@ namespace SymlinkMaker.Core
             Command.ExceptionThrown -= OnFailure;
             Command.ExceptionThrown -= OnException;
 
-            Command.UnregisterPreRunValidation(ConfirmationHandler);
+            Command.UnregisterPreExecutionValidation(ConfirmationHandler);
         }
 
         #region Abstract methods
@@ -49,18 +49,18 @@ namespace SymlinkMaker.Core
 
         #endregion
 
-        public virtual bool Run(
+        public virtual bool Execute(
             IDictionary<string, string> arguments, 
             bool requireConfirmation = true)
         {
             // FIXME : Precaution to not register each time we call the Command
             //         There is a problem here obviously, need some change.
-            Command.UnregisterPreRunValidation(ConfirmationHandler);
+            Command.UnregisterPreExecutionValidation(ConfirmationHandler);
 
             if (requireConfirmation)
-                Command.RegisterPreRunValidation(ConfirmationHandler);
+                Command.RegisterPreExecutionValidation(ConfirmationHandler);
 
-            return Command.Run(arguments);
+            return Command.Execute(arguments);
         }
 
 

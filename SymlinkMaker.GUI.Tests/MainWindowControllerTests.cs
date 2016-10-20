@@ -427,7 +427,7 @@ namespace SymlinkMaker.GUI.Tests
 
             _commandManagerMock.Verify
             (
-                cmd => cmd.Run(
+                cmd => cmd.Execute(
                     commandType,
                     _settings.SourcePath,
                     _settings.TargetPath,
@@ -453,7 +453,7 @@ namespace SymlinkMaker.GUI.Tests
 
             _commandManagerMock.Verify
             (
-                cmd => cmd.Run(
+                cmd => cmd.Execute(
                     commandType,
                     _settings.SourcePath,
                     null,
@@ -474,7 +474,7 @@ namespace SymlinkMaker.GUI.Tests
 
             _commandManagerMock.Verify
             (
-                cmd => cmd.Run(
+                cmd => cmd.Execute(
                     CommandType.Delete, 
                     _settings.TargetPath,
                     null,

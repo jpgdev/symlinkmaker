@@ -8,11 +8,6 @@ namespace SymlinkMaker.CLI
     {
         #region Attributes
 
-        private ConsoleColor _confirmColor = ConsoleColor.DarkGreen;
-        private ConsoleColor _doneColor = ConsoleColor.DarkGreen;
-        private ConsoleColor _titleColor = ConsoleColor.Yellow;
-        private ConsoleColor _errorColor = ConsoleColor.DarkRed;
-
         private readonly IConsoleHelper _consoleHelper;
         private string _title;
         private string[] _titleArgs;
@@ -21,29 +16,13 @@ namespace SymlinkMaker.CLI
 
         #region Properties
 
-        public ConsoleColor ConfirmColor
-        {
-            get { return _confirmColor; }
-            set { _confirmColor = value; }
-        }
+        public ConsoleColor ConfirmColor { get; set; } = ConsoleColor.DarkGreen;
 
-        public ConsoleColor DoneColor
-        {
-            get { return _doneColor; }
-            set { _doneColor = value; }
-        }
+        public ConsoleColor DoneColor { get; set; }  =  ConsoleColor.DarkGreen;
 
-        public ConsoleColor TitleColor
-        {
-            get { return _titleColor; }
-            set { _titleColor = value; }
-        }
+        public ConsoleColor TitleColor { get; set; } = ConsoleColor.Yellow;
 
-        public ConsoleColor ErrorColor
-        {
-            get { return _errorColor; }
-            set { _errorColor = value; }
-        }
+        public ConsoleColor ErrorColor { get; set; }  = ConsoleColor.DarkRed;
 
         #endregion
 
@@ -63,12 +42,12 @@ namespace SymlinkMaker.CLI
             _titleArgs = titleArgsNames;
 
             // Add delegate to show the command title before the command is executed
-            Command.RegisterPreRunValidation(ShowTitle);
+            Command.RegisterPreExecutionValidation(ShowTitle);
         }
 
         public override void Dispose()
         {
-            Command.UnregisterPreRunValidation(ShowTitle);
+            Command.UnregisterPreExecutionValidation(ShowTitle);
 
             base.Dispose();
         }
@@ -124,7 +103,7 @@ namespace SymlinkMaker.CLI
         protected override bool ConfirmationHandler(
             IDictionary<string, string> arguments)
         {
-            _consoleHelper.WriteColored(" (Y/n)?", _confirmColor);
+            _consoleHelper.WriteColored(" (Y/n)?", ConfirmColor);
             return (_consoleHelper.ReadKey().Key != ConsoleKey.N);
         }
     }

@@ -113,7 +113,7 @@ namespace SymlinkMaker.CLI.Tests
         #region Run method Tests
 
         [Test]
-        public void Run_WithNullArgs_ShouldCallCommandParser()
+        public void Execute_WithNullArgs_ShouldCallCommandParser()
         {
             _app.Run(null);
 
@@ -124,7 +124,7 @@ namespace SymlinkMaker.CLI.Tests
         }
 
         [Test]
-        public void Run_WithNoArgs_ShouldCallCommandParser()
+        public void Execute_WithNoArgs_ShouldCallCommandParser()
         {
             string[] args = { };
             _app.Run(args);
@@ -136,7 +136,7 @@ namespace SymlinkMaker.CLI.Tests
         }
 
         [Test]
-        public void Run_WithArgs_ShouldRunCommand()
+        public void Execute_WithArgs_ShouldRunCommand()
         {
             var fakeCommandInfo = new CLICommandInfo(
                 CommandType.Copy,
@@ -154,13 +154,13 @@ namespace SymlinkMaker.CLI.Tests
             _app.Run(args);
 
             _commandsMock[fakeCommandInfo.Type].Verify(
-                cmd => cmd.Run(fakeCommandInfo.Arguments, fakeCommandInfo.RequiresConfirm),
+                cmd => cmd.Execute(fakeCommandInfo.Arguments, fakeCommandInfo.RequiresConfirm),
                 Times.Once
             );
         }
 
         [Test]
-        public void Run_WithInvalidCommandInArgs_ShouldWriteExceptionToConsole()
+        public void Execute_WithInvalidCommandInArgs_ShouldWriteExceptionToConsole()
         {
             var fakeCommandInfo = new CLICommandInfo(
                 CommandType.None,

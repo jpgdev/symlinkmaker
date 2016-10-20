@@ -105,7 +105,7 @@ namespace SymlinkMaker.GUI.GtkSharp
 			this.SettingsAction = new global::Gtk.Action ("SettingsAction", global::Mono.Unix.Catalog.GetString ("Settings"), null, null);
 			this.SettingsAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Settings");
 			w1.Add (this.SettingsAction, null);
-			this.toggleRequireConfirmAction = new global::Gtk.ToggleAction ("toggleRequireConfirmAction", global::Mono.Unix.Catalog.GetString ("Always ask before running a command"), global::Mono.Unix.Catalog.GetString ("lways ask before running a command"), "gtk-dialog-question");
+			this.toggleRequireConfirmAction = new global::Gtk.ToggleAction ("toggleRequireConfirmAction", global::Mono.Unix.Catalog.GetString ("Always ask before executing a command"), global::Mono.Unix.Catalog.GetString ("Always ask before executing a command"), "gtk-dialog-question");
 			this.toggleRequireConfirmAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Require confirmation");
 			w1.Add (this.toggleRequireConfirmAction, null);
 			this.FileAction = new global::Gtk.Action ("FileAction", global::Mono.Unix.Catalog.GetString ("File"), null, null);

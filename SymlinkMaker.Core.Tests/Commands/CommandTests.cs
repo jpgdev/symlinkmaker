@@ -23,7 +23,7 @@ namespace SymlinkMaker.Core.Tests
         public void Constructor_WithOnlyAnOperation_ShouldWork()
         {
             var command = new Command(args => true);
-            Assert.IsTrue(command.Run(null));
+            Assert.IsTrue(command.Execute(null));
         }
 
         #endregion
@@ -31,7 +31,7 @@ namespace SymlinkMaker.Core.Tests
         #region Events Tests
 
         [Test]
-        public void Run_WithAFailingOperation_ShouldCallOnFailureEvent()
+        public void Execute_WithAFailingOperation_ShouldCallOnFailureEvent()
         {
             bool called = false;
             var command = new Command(args => false);
@@ -41,13 +41,13 @@ namespace SymlinkMaker.Core.Tests
                 called = true;  
             };
             
-            command.Run(null);
+            command.Execute(null);
 
             Assert.IsTrue(called);
         }
 
         [Test]
-        public void Run_WithASucceedingOperation_ShouldCallOnSuccessEvent()
+        public void Execute_WithASucceedingOperation_ShouldCallOnSuccessEvent()
         {
             bool called = false;
             var command = new Command(args => true);
@@ -57,36 +57,36 @@ namespace SymlinkMaker.Core.Tests
                 Assert.AreEqual(args.Status, CommandStatus.Succeeded);
                 called = true;  
             };
-            command.Run(null);
+            command.Execute(null);
 
             Assert.IsTrue(called);
         }
 
         [Test]
-        public void Run_WithASucceedingOperation_ShouldCallOnFinishEvent()
+        public void Execute_WithASucceedingOperation_ShouldCallOnFinishEvent()
         {
             bool called = false;
             var cmd = new Command(args => true);
             cmd.Finished += (obj, args) => called = true;
-            cmd.Run(null);
+            cmd.Execute(null);
 
             Assert.IsTrue(called);
         }
 
         [Test]
-        public void Run_WithAFailingOperation_ShouldCallOnFinishEvent()
+        public void Execute_WithAFailingOperation_ShouldCallOnFinishEvent()
         {
             bool called = false;
             var command = new Command(args => true);
 
             command.Finished += (obj, args) => called = true;
-            command.Run(null);
+            command.Execute(null);
 
             Assert.IsTrue(called);
         }
 
         [Test]
-        public void Run_WithThrowingOperation_ShouldCallOnExceptionEvent()
+        public void Execute_WithThrowingOperation_ShouldCallOnExceptionEvent()
         {
             bool called = false;
             var command = new Command(args =>
@@ -100,13 +100,13 @@ namespace SymlinkMaker.Core.Tests
                 called = true;  
             };
             
-            command.Run(null);
+            command.Execute(null);
 
             Assert.IsTrue(called);
         }
 
         [Test]
-        public void Run_WithMissingRequiredArguments_ShouldCallOnExceptionEvent()
+        public void Execute_WithMissingRequiredArguments_ShouldCallOnExceptionEvent()
         {
             bool called = false;
             const string requiredParam = "requiredParam1";
@@ -130,7 +130,7 @@ namespace SymlinkMaker.Core.Tests
                 called = true; 
             };
 
-            command.Run(args);
+            command.Execute(args);
 
             Assert.IsTrue(called);
         }
@@ -140,7 +140,7 @@ namespace SymlinkMaker.Core.Tests
         #region Run method Tests
 
         [Test]
-        public void Run_WithRequiredArguments_ShouldSucceed()
+        public void Execute_WithRequiredArguments_ShouldSucceed()
         {
             const string requiredParam = "requiredParam1";
             var args = new Dictionary<string, string>()
@@ -152,37 +152,37 @@ namespace SymlinkMaker.Core.Tests
                               a => true, 
                               new [] { requiredParam }
                           );
-            bool result = command.Run(args);
+            bool result = command.Execute(args);
 
             Assert.IsTrue(result);
         }
 
         [Test]
-        public void Run_WithFailingPreRunValidation_ShouldFail()
+        public void Execute_WithFailingPreRunValidation_ShouldFail()
         {
             var command = new Command(
                               a => true, 
                               a => false);
 
-            bool result = command.Run(null);
+            bool result = command.Execute(null);
 
             Assert.IsFalse(result);
         }
 
         [Test]
-        public void Run_WithSucceedingPreRunValidation_ShouldSucceed()
+        public void Execute_WithSucceedingPreRunValidation_ShouldSucceed()
         {
             var command = new Command(
                               a => true, 
                               a => true);
 
-            bool result = command.Run(null);
+            bool result = command.Execute(null);
 
             Assert.IsTrue(result);
         }
 
         [Test]
-        public void Run_WithAFailingPreRunValidation_ShouldFailAndNotCallTheOperation()
+        public void Execute_WithAFailingPreRunValidation_ShouldFailAndNotCallTheOperation()
         {
             bool called = false;
             var command = new Command(a =>
@@ -191,11 +191,11 @@ namespace SymlinkMaker.Core.Tests
                     return true;
                 });
 
-            command.RegisterPreRunValidation(args => true);
-            command.RegisterPreRunValidation(args => false);
-            command.RegisterPreRunValidation(args => true);
+            command.RegisterPreExecutionValidation(args => true);
+            command.RegisterPreExecutionValidation(args => false);
+            command.RegisterPreExecutionValidation(args => true);
 
-            bool result = command.Run(null);
+            bool result = command.Execute(null);
 
             Assert.IsFalse(result);
             Assert.IsFalse(called);
@@ -203,7 +203,7 @@ namespace SymlinkMaker.Core.Tests
 
 
         [Test]
-        public void Run_BeforeRunningTheCommand_ShouldHaveAStatusOfPreRun()
+        public void Execute_BeforeRunningTheCommand_ShouldHaveAStatusOfPreRun()
         {
             bool called = false;
             var command = new Command(a => true);
@@ -214,19 +214,19 @@ namespace SymlinkMaker.Core.Tests
                 called = true;
             };
 
-            command.RegisterPreRunValidation(args =>
+            command.RegisterPreExecutionValidation(args =>
                 {
                     throw new Exception("Should break before the command is ran");
                 });
 
-            command.Run(null);
+            command.Execute(null);
 
             Assert.IsTrue(called);
         }
 
 
         [Test]
-        public void Run_WhileRunningTheCommand_ShouldHaveAStatusOfRunning()
+        public void Execute_WhileRunningTheCommand_ShouldHaveAStatusOfRunning()
         {
             bool called = false;
             var command = new Command(a =>
@@ -240,23 +240,23 @@ namespace SymlinkMaker.Core.Tests
                 called = true;
             };
 
-            command.Run(null);
+            command.Execute(null);
 
             Assert.IsTrue(called);
         }
 
         #endregion
 
-        #region Register / Unregister PreRunValidation Tests
+        #region Register / Unregister PreExecutionValidation Tests
 
         [Test]
         public void RegisterPreRunValidation_WithValidDelegate_ShouldAddToPreRunValidation()
         {
             var command = new Command(a => true);
 
-            command.RegisterPreRunValidation(args => false);
+            command.RegisterPreExecutionValidation(args => false);
 
-            bool result = command.Run(null);
+            bool result = command.Execute(null);
 
             Assert.IsFalse(result);
         }
@@ -267,10 +267,10 @@ namespace SymlinkMaker.Core.Tests
             Operation preRunValidation = (args) => false;
             var command = new Command(a => true);
 
-            command.RegisterPreRunValidation(preRunValidation);
-            command.UnregisterPreRunValidation(preRunValidation);
+            command.RegisterPreExecutionValidation(preRunValidation);
+            command.UnregisterPreExecutionValidation(preRunValidation);
 
-            bool result = command.Run(null);
+            bool result = command.Execute(null);
 
             Assert.IsTrue(result);
         }
@@ -280,7 +280,7 @@ namespace SymlinkMaker.Core.Tests
         {
             var command = new Command(a => true);
 
-            command.UnregisterPreRunValidation(args => false);
+            command.UnregisterPreExecutionValidation(args => false);
         }
 
         [Test]
@@ -288,7 +288,7 @@ namespace SymlinkMaker.Core.Tests
         {
             var command = new Command(a => true);
 
-            command.UnregisterPreRunValidation(null);
+            command.UnregisterPreExecutionValidation(null);
         }
 
         #endregion

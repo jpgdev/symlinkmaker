@@ -95,7 +95,7 @@ namespace SymlinkMaker.Core.Tests
             var commands = _commandsLoader.Load();
             var copyCommand = commands[CommandType.Copy];
 
-            copyCommand.Run(_fakeArgs);
+            copyCommand.Execute(_fakeArgs);
 
             _fileOperationsMock.Verify(
                 fileOps => fileOps.Copy(FAKE_SOURCE_PATH, FAKE_TARGET_PATH), 
@@ -108,7 +108,7 @@ namespace SymlinkMaker.Core.Tests
             var commands = _commandsLoader.Load();
             var copyCommand = commands[CommandType.Move];
 
-            copyCommand.Run(_fakeArgs);
+            copyCommand.Execute(_fakeArgs);
 
             _fileOperationsMock.Verify(
                 fileOps => fileOps.Move(FAKE_SOURCE_PATH, FAKE_TARGET_PATH), 
@@ -121,7 +121,7 @@ namespace SymlinkMaker.Core.Tests
             var commands = _commandsLoader.Load();
             var deleteCommand = commands[CommandType.Delete];
 
-            deleteCommand.Run(_fakeArgs);
+            deleteCommand.Execute(_fakeArgs);
 
             _fileOperationsMock.Verify(
                 fileOps => fileOps.Delete(FAKE_SOURCE_PATH), 
@@ -134,7 +134,7 @@ namespace SymlinkMaker.Core.Tests
             var commands = _commandsLoader.Load();
             var symlinkCommand = commands[CommandType.CreateSymLink];
 
-            symlinkCommand.Run(_fakeArgs);
+            symlinkCommand.Execute(_fakeArgs);
 
             _fileOperationsMock.Verify(
                 fileOps => fileOps.CreateSymbolicLink(
@@ -149,7 +149,7 @@ namespace SymlinkMaker.Core.Tests
             var commands = _commandsLoader.Load();
             var allCommand = commands[CommandType.All];
 
-            allCommand.Run(_fakeArgs);
+            allCommand.Execute(_fakeArgs);
 
             _fileOperationsMock.Verify(
                 fileOps => fileOps.Move(FAKE_SOURCE_PATH, FAKE_TARGET_PATH),

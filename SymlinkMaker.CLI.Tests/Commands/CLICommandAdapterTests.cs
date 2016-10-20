@@ -27,7 +27,7 @@ namespace SymlinkMaker.CLI.Tests
             _commandMock = new Mock<ICommand>();
             // Add the ShowTitle delegate to the list
             _commandMock
-                .Setup(cmd => cmd.RegisterPreRunValidation(It.IsAny<Operation>()))
+                .Setup(cmd => cmd.RegisterPreExecutionValidation(It.IsAny<Operation>()))
                 .Callback<Operation>(op => _showTitle = op);
             
             _consoleHelperMock = new Mock<IConsoleHelper>();
@@ -168,11 +168,11 @@ namespace SymlinkMaker.CLI.Tests
 
             // Call the ConfirmationHandler Operation when it is registered
             _commandMock
-                .Setup(cmd => cmd.RegisterPreRunValidation(It.IsAny<Operation>()))
+                .Setup(cmd => cmd.RegisterPreExecutionValidation(It.IsAny<Operation>()))
                 .Callback<Operation>(op => confirmationHandler = op);
            
             // Run the command to get the ConfirmationHandler
-            _commandAdapter.Run(null);
+            _commandAdapter.Execute(null);
 
             Assert.IsFalse(confirmationHandler(null));
         }
@@ -196,11 +196,11 @@ namespace SymlinkMaker.CLI.Tests
 
             // Call the ConfirmationHandler Operation when it is registered
             _commandMock
-                .Setup(cmd => cmd.RegisterPreRunValidation(It.IsAny<Operation>()))
+                .Setup(cmd => cmd.RegisterPreExecutionValidation(It.IsAny<Operation>()))
                 .Callback<Operation>(op => confirmationHandler = op);
            
             // Run the command to get the ConfirmationHandler
-            _commandAdapter.Run(null);
+            _commandAdapter.Execute(null);
 
             Assert.IsTrue(confirmationHandler(null));
         }
@@ -210,11 +210,11 @@ namespace SymlinkMaker.CLI.Tests
         {
             // Call the ConfirmationHandler Operation when it is registered
             _commandMock
-                .Setup(cmd => cmd.RegisterPreRunValidation(It.IsAny<Operation>()))
+                .Setup(cmd => cmd.RegisterPreExecutionValidation(It.IsAny<Operation>()))
                 .Callback<Operation>(op => op(null));
            
             // Run the command to get the ConfirmationHandler
-            _commandAdapter.Run(null);
+            _commandAdapter.Execute(null);
 
             // Check that the message shown was correct
             _consoleHelperMock.Verify

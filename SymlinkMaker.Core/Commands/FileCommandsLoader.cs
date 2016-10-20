@@ -88,7 +88,7 @@ namespace SymlinkMaker.Core
                             CommandType.CreateSymLink
                         };
 
-                        return commandTypes.All(cmd => commands[cmd].Run(args));
+                        return commandTypes.All(cmd => commands[cmd].Execute(args));
                     },
                     new[] { "sourcePath", "targetPath" }
                 )

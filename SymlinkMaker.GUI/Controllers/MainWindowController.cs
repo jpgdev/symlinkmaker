@@ -172,7 +172,7 @@ namespace SymlinkMaker.GUI
         private void View_CopySourceTriggered(IButton button,
                                               ButtonEventArgs eventArgs)
         {
-            _commandManager.Run(
+            _commandManager.Execute(
                 CommandType.Copy, 
                 _settings.SourcePath,
                 _settings.TargetPath,
@@ -184,7 +184,7 @@ namespace SymlinkMaker.GUI
 
         protected void View_CreateSymlinkTriggered(IButton sender, EventArgs e)
         {
-            _commandManager.Run(
+            _commandManager.Execute(
                 CommandType.CreateSymLink, 
                 _settings.SourcePath, 
                 _settings.TargetPath, 
@@ -195,7 +195,7 @@ namespace SymlinkMaker.GUI
 
         protected void View_DeleteSourceTriggered(IButton sender, EventArgs e)
         {
-            _commandManager.Run(
+            _commandManager.Execute(
                 CommandType.Delete,
                 _settings.SourcePath,
                 null,
@@ -206,7 +206,7 @@ namespace SymlinkMaker.GUI
 
         protected void View_DeleteTargetTriggered(IButton sender, EventArgs e)
         {
-            _commandManager.Run(
+            _commandManager.Execute(
                 CommandType.Delete,
                 _settings.TargetPath,
                 null,
@@ -217,7 +217,7 @@ namespace SymlinkMaker.GUI
 
         protected void View_DoAllTriggered(IButton sender, EventArgs e)
         {
-            _commandManager.Run(
+            _commandManager.Execute(
                 CommandType.All, 
                 _settings.SourcePath, 
                 _settings.TargetPath, 
@@ -228,7 +228,7 @@ namespace SymlinkMaker.GUI
 
         protected void View_MoveSourceTriggered(IButton sender, EventArgs e)
         {  
-            _commandManager.Run(
+            _commandManager.Execute(
                 CommandType.Move, 
                 _settings.SourcePath, 
                 _settings.TargetPath, 

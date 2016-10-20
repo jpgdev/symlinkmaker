@@ -17,10 +17,10 @@ namespace SymlinkMaker.Core
         event CommandEventHandler Finished;
         event CommandExceptionEventHandler ExceptionThrown;
 
-        void RegisterPreRunValidation(Operation preRunFunc);
+        void RegisterPreExecutionValidation(Operation preExecuteValidation);
 
-        void UnregisterPreRunValidation(Operation preRunFunc);
+        void UnregisterPreExecutionValidation(Operation preExecuteValidation);
 
-        bool Run(IDictionary<string, string> args);
+        bool Execute(IDictionary<string, string> args);
     }
 }
