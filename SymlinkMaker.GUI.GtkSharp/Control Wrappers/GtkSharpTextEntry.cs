@@ -7,7 +7,7 @@ namespace SymlinkMaker.GUI.GtkSharp
     {
         public event TextChangedEventHandler TextChanged;
 
-        protected Entry BaseWidget
+        protected new Entry BaseWidget
         {
             get { return base.BaseWidget as Entry; }
         }
@@ -29,7 +29,7 @@ namespace SymlinkMaker.GUI.GtkSharp
             BaseWidget.Changed -= BaseWidget_Changed;   
         }
 
-        private void BaseWidget_Changed (object sender, EventArgs e)
+        private void BaseWidget_Changed(object sender, EventArgs e)
         {
             if (TextChanged != null)
                 TextChanged(this, new EventArgs());

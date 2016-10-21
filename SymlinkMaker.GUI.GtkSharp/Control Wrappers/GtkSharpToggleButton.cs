@@ -7,7 +7,7 @@ namespace SymlinkMaker.GUI.GtkSharp
     {
         public event ButtonToggleEventHandler StatusChanged;
 
-        protected ToggleButton BaseWidget
+        protected new ToggleButton BaseWidget
         {
             get { return base.BaseWidget as ToggleButton; }
         }

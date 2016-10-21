@@ -7,7 +7,7 @@ namespace SymlinkMaker.GUI.GtkSharp
     {
         public event ButtonClickEventHandler Triggered;
 
-        protected Button BaseWidget
+        protected new Button BaseWidget
         {
             get { return base.BaseWidget as Button; }
         }

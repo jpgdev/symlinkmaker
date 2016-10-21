@@ -8,7 +8,7 @@ namespace SymlinkMaker.Core
 
     public delegate bool Operation(IDictionary<string, string> args);
 
-    // TODO : rename this, it collides with another ICommand
+    // TODO : rename this, it collides with another ICommand (System.Windows.Input.ICommand)
     //        Ideas : IOperation?
     public interface ICommand
     {

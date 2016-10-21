@@ -3,25 +3,24 @@ using NUnit.Framework;
 using SymlinkMaker.GUI.GtkSharp;
 using Gtk;
 using System;
+using Gdk;
+using Image = Gtk.Image;
 
 namespace SymlinkMaker.GUI.GtkSharp.Tests
 {
     [TestFixture]
     public class GtkSharpImageTests
     {
-        // FIXME : In unit tests the Stetic.IconLoader.LoadIcon throws a 
-        //         NullReferenceException in IconLoader at the line:
-        //            Gdk.Pixmap pmap = new Gdk.Pixmap (Gdk.Screen.Default.RootWindow, sz, sz);
-        //          
-        //         So I can't instanciate a GtkSharpImage for now, since it calls
-        //         it in the constructor
-
         #region Fields
 
         private const string DEFAULT_IMAGE_NAME = "yes";
 
+
+        private Pixbuf _gtkYesPixbuf;
+        private Pixbuf _gtkNoPixbuf;
         private Mock<Image> _imageMock;
         private Mock<IGtkIconNameConverter> _nameConverter;
+        private Mock<IIconLoader<Pixbuf>> _iconLoader;
         private GtkSharpImage _image;
 
         #endregion
@@ -37,17 +36,29 @@ namespace SymlinkMaker.GUI.GtkSharp.Tests
             };
             _imageMock.SetupAllProperties();
 
+            _gtkYesPixbuf = new Pixbuf(
+                new byte[] { 255, 0, 0, 255 },
+                true, 1, 1, 1, 4);
+
+            _gtkNoPixbuf = new Pixbuf(
+                new byte[] { 0, 255, 0, 255 },
+                true, 1, 1, 1, 4);
+            
+            _iconLoader = new Mock<IIconLoader<Pixbuf>>();
+            SetupIconLoader();
+
             _nameConverter = new Mock<IGtkIconNameConverter>();
             SetupNameConverter();
 
-//            _image = new GtkSharpImage(
-//                _imageMock.Object,
-//                DEFAULT_IMAGE_NAME,
-//                _nameConverter.Object
-//            );
+            _image = new GtkSharpImage(
+                _imageMock.Object,
+                DEFAULT_IMAGE_NAME,
+                _nameConverter.Object,
+                _iconLoader.Object
+            );
         }
 
-        void SetupNameConverter()
+        private void SetupNameConverter()
         {
             _nameConverter.SetupAllProperties();
 
@@ -68,13 +79,25 @@ namespace SymlinkMaker.GUI.GtkSharp.Tests
                 .Returns("no");
         }
 
+        private void SetupIconLoader()
+        {
+            _iconLoader.SetupAllProperties();
+
+            _iconLoader
+                .Setup(c => c.Load("gtk-yes"))
+                .Returns(_gtkYesPixbuf);
+            
+            _iconLoader
+                .Setup(c => c.Load("gtk-no"))
+                .Returns(_gtkNoPixbuf);
+        }
+
         [TearDown]
         public void AfterEachTearDown()
         {
-            _nameConverter.Reset();
-            SetupNameConverter();
-
-            _imageMock.Reset();
+            _iconLoader.ResetCalls();
+            _nameConverter.ResetCalls();
+            _imageMock.ResetCalls();
         }
 
         #endregion
@@ -86,11 +109,12 @@ namespace SymlinkMaker.GUI.GtkSharp.Tests
         {
             Assert.Throws(
                 Is.TypeOf<ArgumentNullException>()
-                .And.Property("Message").Contains("name"),
+                   .And.Property("Message").Contains("name"),
                 () => new GtkSharpImage(
                     _imageMock.Object,
                     null,
-                    _nameConverter.Object
+                    _nameConverter.Object,
+                    _iconLoader.Object
                 )
             );
         }
@@ -104,30 +128,46 @@ namespace SymlinkMaker.GUI.GtkSharp.Tests
                 () => new GtkSharpImage(
                     _imageMock.Object,
                     "pathName",
+                    null,
+                    _iconLoader.Object
+                )
+            );
+        }
+
+        [Test]
+        public void Constructor_WithoutIconLoader_ShouldThrow()
+        {
+            Assert.Throws(
+                Is.TypeOf<ArgumentNullException>()
+                .And.Property("Message").Contains("iconLoader"),
+                () => new GtkSharpImage(
+                    _imageMock.Object,
+                    "pathName",
+                    _nameConverter.Object,
                     null
                 )
             );
         }
 
-        [Test, Ignore]
+        [Test, Ignore("There is a bug when assigning my 'fake' pixbuf, but it actually tries to set it")]
         public void Constructor_ShouldSetImagePixbuf()
         {
             Assert.IsNotNull(_imageMock.Object.Pixbuf);
         }
 
-        [Test, Ignore]
+        [Test]
         public void Path_WhenGet_ShouldReturnImageName()
         {
-            Assert.AreEqual(DEFAULT_IMAGE_NAME, _image.Path);
+            Assert.AreEqual(DEFAULT_IMAGE_NAME, _image.Name);
         }
 
-        [Test, Ignore]
+        [Test, Ignore("There is a bug when assigning my 'fake' pixbuf, but it actually tries to set it")]
         public void Path_WhenSet_ShouldSetImagePixbuf()
         {
             _imageMock.Object.Pixbuf = null;
-
-            _image.Path = "no";
-
+      
+            _image.Name = "no";
+        
             Assert.IsNotNull(_imageMock.Object.Pixbuf);
         }
 

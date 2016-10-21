@@ -31,7 +31,11 @@ namespace SymlinkMaker.GUI.GtkSharp
                 dialogHelper
             );
 
-            _mainWindowView.Closed += (sender, e) => Application.Quit();
+            _mainWindowView.Closed += (sender, e) =>
+            {
+                _mainWindowController.Dispose();
+                Application.Quit();
+            };
         }
 
         public override void Run(string[] args)

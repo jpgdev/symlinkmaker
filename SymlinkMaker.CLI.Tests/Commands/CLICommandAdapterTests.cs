@@ -1,7 +1,6 @@
 ﻿using System;
 using NUnit.Framework;
 using Moq;
-using Moq.Protected;
 using SymlinkMaker.Core;
 using System.Collections.Generic;
 

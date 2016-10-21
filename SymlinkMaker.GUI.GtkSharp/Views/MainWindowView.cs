@@ -49,8 +49,16 @@ namespace SymlinkMaker.GUI.GtkSharp
             this.Build();
 
             // Image
-            SourceStatusImage = new GtkSharpImage(imgSourcePath, "yes", iconNameConverter);
-            TargetStatusImage = new GtkSharpImage(imgTargetPath, "yes", iconNameConverter);
+            SourceStatusImage = new GtkSharpImage(
+                imgSourcePath, 
+                "yes", 
+                iconNameConverter,
+                new FromWidgetIconLoader(imgSourcePath));
+            TargetStatusImage = new GtkSharpImage(
+                imgTargetPath, 
+                "yes", 
+                iconNameConverter,
+                new FromWidgetIconLoader(imgTargetPath));
 
             // Text Entries
             SourcePath = new GtkSharpTextEntry(txtBoxSource);

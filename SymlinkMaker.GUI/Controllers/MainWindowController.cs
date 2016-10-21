@@ -78,7 +78,7 @@ namespace SymlinkMaker.GUI
 
         private void SubscribeToEvents()
         {
-            
+
             // Commands buttons
             _view.CopySourceButton.Triggered += View_CopySourceTriggered;
             _view.MoveSourceButton.Triggered += View_MoveSourceTriggered;
@@ -136,7 +136,7 @@ namespace SymlinkMaker.GUI
         #region App Settings PropertyChanged
 
         private void AppSettings_PropertyChanged(object sender,
-                                                 PropertyChangedEventArgs e)
+            PropertyChangedEventArgs e)
         {
             var settings = (AppSettings)sender;
 
@@ -170,7 +170,7 @@ namespace SymlinkMaker.GUI
         #region Button Event Handlers
 
         private void View_CopySourceTriggered(IButton button,
-                                              ButtonEventArgs eventArgs)
+            ButtonEventArgs eventArgs)
         {
             _commandManager.Execute(
                 CommandType.Copy, 
@@ -238,7 +238,7 @@ namespace SymlinkMaker.GUI
         }
 
         protected void View_FindSourcePathTriggered(IButton sender,
-                                                    EventArgs e)
+            EventArgs e)
         {            
             string path = _dialogHelper.ShowFileChooserDialog(
                               _settings.SourcePath, 
@@ -252,7 +252,7 @@ namespace SymlinkMaker.GUI
         }
 
         protected void View_FindTargetPathTriggered(IButton sender,
-                                                    EventArgs e)
+            EventArgs e)
         {
             string path = _dialogHelper.ShowFileChooserDialog(
                               _settings.TargetPath, 
@@ -266,21 +266,21 @@ namespace SymlinkMaker.GUI
         }
 
         protected void View_OpenSourcePathTriggered(IButton sender,
-                                                    EventArgs e)
+            EventArgs e)
         {
             // TODO : Replace with Interface
             // Process.Start(_settings.SourcePath);
         }
 
         protected void View_OpenTargetPathTriggered(IButton sender,
-                                                    EventArgs e)
+            EventArgs e)
         {
             // TODO : Replace with Interface
             // Process.Start(_settings.TargetPath);
         }
 
         private void View_RequireConfirmationStatusChanged(IToggle button,
-                                                           ToggleEventArgs eventArgs)
+            ToggleEventArgs eventArgs)
         {
             _settings.RequiresConfirmation = eventArgs.IsActive; 
         }
@@ -290,13 +290,13 @@ namespace SymlinkMaker.GUI
         #region Text Event Handlers
 
         private void View_SourcePathTextChanged(ITextSource sender,
-                                                EventArgs eventArgs)
+            EventArgs eventArgs)
         {
             _settings.SourcePath = sender.Text;
         }
 
         private void View_TargetPathTextChanged(ITextSource sender,
-                                                EventArgs eventArgs)
+            EventArgs eventArgs)
         {
             _settings.TargetPath = sender.Text;
         }
@@ -321,7 +321,7 @@ namespace SymlinkMaker.GUI
             if (invertImages)
                 exists = !exists;
 
-            image.Path = exists ? GREEN_STATUS_IMAGE_NAME : RED_STATUS_IMAGE_NAME;
+            image.Name = exists ? GREEN_STATUS_IMAGE_NAME : RED_STATUS_IMAGE_NAME;
             image.Tooltip = imgTooltip;
         }
 

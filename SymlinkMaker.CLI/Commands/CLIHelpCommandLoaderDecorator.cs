@@ -39,6 +39,8 @@ namespace SymlinkMaker.CLI
                         _consoleHelper.WriteLineColored(
                             GenerateHelpMessage(),
                             // TODO : Use the args to get the color?? From <string, string> to <string, object> ?
+                            //        OR 
+                            //        Use global settings, like a Theme
                             ConsoleColor.Yellow
                         );
 

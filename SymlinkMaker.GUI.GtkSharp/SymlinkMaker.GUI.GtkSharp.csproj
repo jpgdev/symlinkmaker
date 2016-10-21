@@ -63,6 +63,8 @@
     <Compile Include="Control Wrappers\GtkSharpWindow.cs" />
     <Compile Include="Commands\GtkSharpCommandAdaptersLoader.cs" />
     <Compile Include="gtk-gui\SymlinkMaker.GUI.GtkSharp.MainWindowView.cs" />
+    <Compile Include="Utilities\IIconLoader.cs" />
+    <Compile Include="Utilities\FromWidgetIconLoader.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>

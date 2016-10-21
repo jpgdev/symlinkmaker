@@ -512,7 +512,7 @@ namespace SymlinkMaker.GUI.Tests
                 Times.Once
             );
 
-            Assert.AreEqual("yes", _sourceStatusImage.Object.Path);
+            Assert.AreEqual("yes", _sourceStatusImage.Object.Name);
             Assert.IsTrue(Regex.IsMatch(
                     _sourceStatusImage.Object.Tooltip, 
                     "occupied"
@@ -547,7 +547,7 @@ namespace SymlinkMaker.GUI.Tests
                 Times.Once
             );
 
-            Assert.AreEqual("no", _targetStatusImage.Object.Path);
+            Assert.AreEqual("no", _targetStatusImage.Object.Name);
             Assert.IsTrue(Regex.IsMatch(
                     _targetStatusImage.Object.Tooltip, 
                     "occupied"
@@ -672,7 +672,7 @@ namespace SymlinkMaker.GUI.Tests
                 Times.Once
             );
 
-            Assert.AreEqual(imageName, _sourceStatusImage.Object.Path);
+            Assert.AreEqual(imageName, _sourceStatusImage.Object.Name);
             Assert.IsTrue(Regex.IsMatch(
                     _sourceStatusImage.Object.Tooltip, 
                     tooltipPart
@@ -705,7 +705,7 @@ namespace SymlinkMaker.GUI.Tests
                 Times.Once
             );
 
-            Assert.AreEqual(imageName, _targetStatusImage.Object.Path);
+            Assert.AreEqual(imageName, _targetStatusImage.Object.Name);
             Assert.IsTrue(Regex.IsMatch(
                     _targetStatusImage.Object.Tooltip, 
                     tooltipPart

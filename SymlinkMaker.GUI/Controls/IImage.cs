@@ -2,7 +2,7 @@
 {
     public interface IImage : IControl
     {
-        string Path { get; set; }
+        string Name { get; set; }
     }
 }
 
