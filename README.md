@@ -53,7 +53,7 @@ This version does not have an actual interface, at the time only parse the argum
 
 ## What is left to do?
 
-- Implement the WPF GUi correctly (like the Gtk# one)
+- Implement the WPF GUI correctly (like the Gtk# one)
 - Log all actions 
 - Repeat or revert the actions using config or log files
 - Setup Code Coverage

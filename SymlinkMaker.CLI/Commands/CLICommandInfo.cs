@@ -8,9 +8,10 @@ namespace SymlinkMaker.CLI
     {
         public CommandType Type;
         public IDictionary<string, string> Arguments;
-        public bool RequiresConfirm; // TODO : Move into args?
+        public bool RequiresConfirm;
 
-        public CLICommandInfo (CommandType type, IDictionary<string, string> args, bool requiresConfirm){
+        public CLICommandInfo(CommandType type, IDictionary<string, string> args, bool requiresConfirm)
+        {
             Type = type;
             Arguments = args;
             RequiresConfirm = requiresConfirm;

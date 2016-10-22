@@ -12,6 +12,8 @@ namespace SymlinkMaker.CLI.Tests
     {
         private CLICommandParser _commandParser;
 
+        #region Constants
+
         private const string SOURCE_PATH_ARG_NAME = "sourcePath";
         private const string TARGET_PATH_ARG_NAME = "targetPath";
 
@@ -21,15 +23,17 @@ namespace SymlinkMaker.CLI.Tests
         private static readonly string[] CONFIRM_FLAGS = { "-c", "--c", "--confirm", "-confirm" };
         private static readonly string[] NO_CONFIRM_FLAGS = { "-n", "--n", "--no-confirm", "-no-confirm" };
 
-        private static readonly CommandType[] COMMAND_0_ARG = { CommandType.ShowHelp };
-        private static readonly CommandType[] COMMAND_1_ARG = { CommandType.Delete };
-        private static readonly CommandType[] COMMAND_2_ARG =
+        private static readonly CommandType[] COMMANDS_0_ARG = { CommandType.ShowHelp };
+        private static readonly CommandType[] COMMANDS_1_ARG = { CommandType.Delete };
+        private static readonly CommandType[] COMMANDS_2_ARGS =
             { 
-            CommandType.Copy, 
-            CommandType.Copy, 
-            CommandType.CreateSymLink, 
-            CommandType.All
-        };
+                CommandType.Copy, 
+                CommandType.Copy, 
+                CommandType.CreateSymLink, 
+                CommandType.All
+            };
+
+        #endregion
 
         #region Set Up / Tear Down
 
@@ -46,7 +50,7 @@ namespace SymlinkMaker.CLI.Tests
         [Test]
 
         public void ParseArgs_WithValid0ArgsCommand_ShouldReturnIt(
-            [ValueSource(nameof(COMMAND_0_ARG))]CommandType commandType)
+            [ValueSource(nameof(COMMANDS_0_ARG))]CommandType commandType)
         {
             foreach (var commandName in GetCLICommandNamesFromType(commandType))
             {
@@ -66,7 +70,7 @@ namespace SymlinkMaker.CLI.Tests
 
         [Test, Pairwise]
         public void ParseArgs_WithValid0ArgsCommandANDNoConfirmFlag_ShouldReturnIt(
-            [ValueSource(nameof(COMMAND_0_ARG))]CommandType commandType,
+            [ValueSource(nameof(COMMANDS_0_ARG))]CommandType commandType,
             [ValueSource(nameof(NO_CONFIRM_FLAGS))]string flag)
         {
             foreach (var commandName in GetCLICommandNamesFromType(commandType))
@@ -87,14 +91,13 @@ namespace SymlinkMaker.CLI.Tests
 
         [Test, Pairwise]
         public void ParseArgs_WithValid0ArgsCommandANDConfirmFlag_ShouldReturnIt(
-            [ValueSource(nameof(COMMAND_0_ARG))]CommandType commandType,
+            [ValueSource(nameof(COMMANDS_0_ARG))]CommandType commandType,
             [ValueSource(nameof(CONFIRM_FLAGS))]string flag)
         {
             // Note : ShowHelp sets the no-confirm manually
             // TODO : Add a property in the commands for this?
-            if(commandType == CommandType.ShowHelp){
+            if (commandType == CommandType.ShowHelp)
                 return;
-            }
 
             foreach (var commandName in GetCLICommandNamesFromType(commandType))
             {
@@ -118,7 +121,7 @@ namespace SymlinkMaker.CLI.Tests
 
         [Test]
         public void ParseArgs_WithValid1ArgsCommand_ShouldReturnIt(
-            [ValueSource(nameof(COMMAND_1_ARG))]CommandType commandType)
+            [ValueSource(nameof(COMMANDS_1_ARG))]CommandType commandType)
         {
             foreach (var commandName in GetCLICommandNamesFromType(commandType))
             {
@@ -141,7 +144,7 @@ namespace SymlinkMaker.CLI.Tests
 
         [Test, Pairwise]
         public void ParseArgs_WithValid1ArgsCommandANDNoConfirmFlag_ShouldReturnIt(
-            [ValueSource(nameof(COMMAND_1_ARG))]CommandType commandType,
+            [ValueSource(nameof(COMMANDS_1_ARG))]CommandType commandType,
             [ValueSource(nameof(NO_CONFIRM_FLAGS))]string flag)
         {
 
@@ -169,7 +172,7 @@ namespace SymlinkMaker.CLI.Tests
 
         [Test, Pairwise]
         public void ParseArgs_WithValid1ArgsCommandANDConfirmFlag_ShouldReturnIt(
-            [ValueSource(nameof(COMMAND_1_ARG))]CommandType commandType,
+            [ValueSource(nameof(COMMANDS_1_ARG))]CommandType commandType,
             [ValueSource(nameof(CONFIRM_FLAGS))]string flag)
         {
 
@@ -201,7 +204,7 @@ namespace SymlinkMaker.CLI.Tests
 
         [Test]
         public void ParseArgs_WithValid2ArgsCommand_ShouldReturnIt(
-            [ValueSource(nameof(COMMAND_2_ARG))]CommandType commandType)
+            [ValueSource(nameof(COMMANDS_2_ARGS))]CommandType commandType)
         {
             foreach (var commandName in GetCLICommandNamesFromType(commandType))
             {
@@ -233,7 +236,7 @@ namespace SymlinkMaker.CLI.Tests
 
         [Test, Pairwise]
         public void ParseArgs_WithValid2ArgsCommandANDConfirmFlag_ShouldReturnIt(
-            [ValueSource(nameof(COMMAND_2_ARG))]CommandType commandType,
+            [ValueSource(nameof(COMMANDS_2_ARGS))]CommandType commandType,
             [ValueSource(nameof(CONFIRM_FLAGS))]string flag)
         {
           
@@ -267,7 +270,7 @@ namespace SymlinkMaker.CLI.Tests
 
         [Test, Pairwise]
         public void ParseArgs_WithValid2ArgsCommandANDNoConfirmFlag_ShouldReturnIt(
-            [ValueSource(nameof(COMMAND_2_ARG))]CommandType commandType,
+            [ValueSource(nameof(COMMANDS_2_ARGS))]CommandType commandType,
             [ValueSource(nameof(NO_CONFIRM_FLAGS))]string flag)
         {
           
@@ -340,7 +343,6 @@ namespace SymlinkMaker.CLI.Tests
 
         #region Helper methods
 
-        // TODO : Move this into the CLICommandParser class?
         private static IEnumerable<string> GetCLICommandNamesFromType(CommandType type)
         {
             var possibleNames = new List<string>();

@@ -41,7 +41,7 @@
     <Reference Include="gtk-sharp, Version=3.0.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MainWindowControllerTests.cs" />
+    <Compile Include="Controllers\MainWindowControllerTests.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -56,5 +56,8 @@
       <Project>{B676AA21-1DCA-410A-94B1-323D01719B28}</Project>
       <Name>SymlinkMaker.GUI</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Controllers\" />
   </ItemGroup>
 </Project>

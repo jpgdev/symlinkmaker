@@ -9,19 +9,16 @@ namespace SymlinkMaker.GUI.GtkSharp
 
         public GtkIconNameConverter()
         {
-            // TODO : Add an IconLoader?
-            //        intead of hardcoding them in the contructor
             _gtkNameFromImageName = new Dictionary<string, string>()
             {
                 { "yes", "gtk-yes" },
-                { "no", "gtk-no" },
-//                { "ok", "gtk-ok" }
+                { "no", "gtk-no" }
             };
         }
 
         public string GetImageNameFromGtkName(string gtkName)
         {
-            // FIXME : Might return the wrong value if there is multiple imageName 
+            // NOTE : Might return the wrong value if there is multiple imageName 
             //         which are the same, since values are not unique like keys
             return _gtkNameFromImageName.First(x => x.Value == gtkName).Key;
         }

@@ -8,7 +8,6 @@
         Copy,
         CreateSymLink,
         Move,
-        // TODO : Rename this, it does no longer do it all
         All,
         ShowHelp,
     }

@@ -11,18 +11,12 @@ namespace SymlinkMaker.GUI.Tests
     public class MainWindowControllerTests
     {
         
-        // TODO : Things left to tests
-        /*
-         *  - OpenSource (button)
-         *  - OpenTarget (button)
-         */
-
         #region Constants
 
-        private readonly string SOURCE_PATH_DEFAULT = "/source/path/default/";
-        private readonly string TARGET_PATH_DEFAULT = "/target/path/default/";
-        private readonly string NEW_SOURCE_PATH = "/new/source/path";
-        private readonly string NEW_TARGET_PATH = "/new/target/path";
+        private const string SOURCE_PATH_DEFAULT = "/source/path/default/";
+        private const string TARGET_PATH_DEFAULT = "/target/path/default/";
+        private const string NEW_SOURCE_PATH = "/new/source/path";
+        private const string NEW_TARGET_PATH = "/new/target/path";
 
         private const string BUTTON_COPY_SOURCE_KEY = "COPY_SOURCE";
         private const string BUTTON_MOVE_SOURCE_KEY = "MOVE_SOURCE";
@@ -130,7 +124,6 @@ namespace SymlinkMaker.GUI.Tests
 
         private void ResetAppSettings()
         {
-            // TODO : Use an Interface or a Loader of some kind?
             _settings = new AppSettings()
             {
                 FileOperations = _fileOperationsMock.Object,
@@ -160,24 +153,6 @@ namespace SymlinkMaker.GUI.Tests
             _openTargetButtonMock = CreateMockAndSetupProperties<IButton>();
 
             _requireConfirmToggleButtonMock = CreateMockAndSetupProperties<IToggle>();
-//
-//            _sourceStatusImage = new Mock<IImage>();
-//            _targetStatusImage = new Mock<IImage>();
-//
-//            _sourcePathMock = new Mock<IText>();
-//            _targetPathMock = new Mock<IText>();
-//
-//            _copySourceButtonMock = new Mock<IButton>();
-//            _moveSourceButtonMock = new Mock<IButton>();
-//            _deleteSourceButtonMock = new Mock<IButton>();
-//            _deleteTargetButtonMock = new Mock<IButton>();
-//            _createSymlinkButtonMock = new Mock<IButton>();
-//            _doAllButtonMock = new Mock<IButton>();
-//            _findSourceButtonMock = new Mock<IButton>();
-//            _openSourceButtonMock = new Mock<IButton>();
-//            _findTargetButtonMock = new Mock<IButton>();
-//            _openTargetButtonMock = new Mock<IButton>();
-//            _requireConfirmToggleButtonMock = new Mock<IToggleButton>();
 
             _commandButtonsMocks[BUTTON_COPY_SOURCE_KEY] = _copySourceButtonMock;
             _commandButtonsMocks[BUTTON_MOVE_SOURCE_KEY] = _moveSourceButtonMock;
@@ -274,6 +249,16 @@ namespace SymlinkMaker.GUI.Tests
             mock.SetupAllProperties();
         }
 
+        private static object GetPropertyValueFromName(object sourceObject,
+                                                       string propertyName)
+        {
+            
+            return sourceObject
+                .GetType()
+                .GetProperty(propertyName)
+                .GetValue(sourceObject);
+        }
+
         #endregion
 
         #region Contructor Tests
@@ -345,7 +330,7 @@ namespace SymlinkMaker.GUI.Tests
                 p => p.Text
             );
 
-            // We need to call the Dispose, otherwise EventHandler are left out
+            // We need to call the Dispose, to clear the EventHandlers
             using (new MainWindowController(
                        _settings,
                        _viewMock.Object,
@@ -353,7 +338,6 @@ namespace SymlinkMaker.GUI.Tests
                        _dialogHelperMock.Object 
                    ))
             {
-
                 Assert.AreEqual(
                     _settings.SourcePath,
                     _sourcePathMock.Object.Text);
@@ -367,7 +351,7 @@ namespace SymlinkMaker.GUI.Tests
                 p => p.Text
             );
 
-            // We need to call the Dispose, otherwise EventHandler are left out
+            // We need to call the Dispose, to clear the EventHandlers
             using (new MainWindowController(
                        _settings,
                        _viewMock.Object,
@@ -389,7 +373,7 @@ namespace SymlinkMaker.GUI.Tests
                 t => t.IsActive
             );
 
-            // We need to call the Dispose, otherwise EventHandler are left out
+            // We need to call the Dispose, to clear the EventHandlers
             using (new MainWindowController(
                        _settings,
                        _viewMock.Object,
@@ -438,10 +422,12 @@ namespace SymlinkMaker.GUI.Tests
         }
 
         [Test]
-        [TestCase(BUTTON_DELETE_SOURCE_KEY, CommandType.Delete)]
+        [TestCase(BUTTON_DELETE_SOURCE_KEY, CommandType.Delete, "SourcePath")]
+        [TestCase(BUTTON_DELETE_TARGET_KEY, CommandType.Delete, "TargetPath")]
         public void OneArgCommandButtonEventHandler_WhenTriggered_ShouldRunTheCorrectCommand(
             string buttonMockName,
-            CommandType commandType
+            CommandType commandType,
+            string settingsPathPropertyName
         )
         {
             var buttonMock = _commandButtonsMocks[buttonMockName];
@@ -451,32 +437,15 @@ namespace SymlinkMaker.GUI.Tests
                 buttonMock.Object,
                 new ButtonEventArgs());
 
+            var path = GetPropertyValueFromName(
+                           _settings, 
+                           settingsPathPropertyName).ToString();
+
             _commandManagerMock.Verify
             (
                 cmd => cmd.Execute(
                     commandType,
-                    _settings.SourcePath,
-                    null,
-                    _settings.RequiresConfirmation
-                ),
-                Times.Once
-            );
-        }
-
-        [Test]
-        public void DeleteTargetButtonEventHandler_WhenTriggered_ShouldRunDeleteCommand()
-        {
-            _deleteTargetButtonMock
-                .Raise(
-                e => e.Triggered += null,
-                _deleteTargetButtonMock.Object,
-                new ButtonEventArgs());
-
-            _commandManagerMock.Verify
-            (
-                cmd => cmd.Execute(
-                    CommandType.Delete, 
-                    _settings.TargetPath,
+                    path,
                     null,
                     _settings.RequiresConfirmation
                 ),
@@ -495,8 +464,6 @@ namespace SymlinkMaker.GUI.Tests
         {
             var button = _commandButtonsMocks[buttonMockName];
 
-            // Since it will be called in the constructor, we reset the calls
-            _fileOperationsMock.ResetCalls();
             _fileOperationsMock
                 .Setup(op => op.Exists(SOURCE_PATH_DEFAULT))
                 .Returns(true);
@@ -509,7 +476,7 @@ namespace SymlinkMaker.GUI.Tests
             _fileOperationsMock.Verify
             (
                 op => op.Exists(SOURCE_PATH_DEFAULT),
-                Times.Once
+                Times.AtLeastOnce
             );
 
             Assert.AreEqual("yes", _sourceStatusImage.Object.Name);
@@ -530,8 +497,6 @@ namespace SymlinkMaker.GUI.Tests
         {
             var button = _commandButtonsMocks[buttonMockName];
 
-            // Since it will be called in the constructor, we reset the calls
-            _fileOperationsMock.ResetCalls();
             _fileOperationsMock
                 .Setup(op => op.Exists(TARGET_PATH_DEFAULT))
                 .Returns(true);
@@ -544,7 +509,7 @@ namespace SymlinkMaker.GUI.Tests
             _fileOperationsMock.Verify
             (
                 op => op.Exists(TARGET_PATH_DEFAULT),
-                Times.Once
+                Times.AtLeastOnce
             );
 
             Assert.AreEqual("no", _targetStatusImage.Object.Name);
@@ -615,6 +580,30 @@ namespace SymlinkMaker.GUI.Tests
             Assert.IsTrue(_settings.RequiresConfirmation);
         }
 
+        [Test, Ignore("OpenSource is not implemented yet, need to update the test when it will be")]
+        public void OpenSourceButtonEventHandler_WhenTriggered_ShouldFolderInFileManager()
+        {
+            _openSourceButtonMock   
+                .Raise(
+                e => e.Triggered += null,
+                _openSourceButtonMock.Object,
+                EventArgs.Empty);
+
+            // TODO : Need to add verification
+        }
+
+        [Test, Ignore("OpenTarget is not implemented yet, need to update the test when it will be")]
+        public void OpenTargetButtonEventHandler_WhenTriggered_ShouldFolderInFileManager()
+        {
+            _openTargetButtonMock
+                .Raise(
+                e => e.Triggered += null,
+                _openTargetButtonMock.Object,
+                EventArgs.Empty);
+
+            // TODO : Need to add verification
+        }
+
         #endregion
 
         #region Text Changed Event Handlers Tests
@@ -658,8 +647,6 @@ namespace SymlinkMaker.GUI.Tests
             string tooltipPart
         )
         {
-            // Since it will be called in the constructor, we reset the calls
-            _fileOperationsMock.ResetCalls();
             _fileOperationsMock
                 .Setup(op => op.Exists(NEW_SOURCE_PATH))
                 .Returns(fileExists);
@@ -669,7 +656,7 @@ namespace SymlinkMaker.GUI.Tests
             _fileOperationsMock.Verify
             (
                 op => op.Exists(NEW_SOURCE_PATH),
-                Times.Once
+                Times.AtLeastOnce
             );
 
             Assert.AreEqual(imageName, _sourceStatusImage.Object.Name);
@@ -688,21 +675,16 @@ namespace SymlinkMaker.GUI.Tests
             string tooltipPart
         )
         {
-            // Arrange
-            // Since it will be called in the constructor, we reset the calls
-            _fileOperationsMock.ResetCalls();
             _fileOperationsMock
                 .Setup(op => op.Exists(NEW_TARGET_PATH))
                 .Returns(fileExists);
 
-            // Act
             _settings.TargetPath = NEW_TARGET_PATH;
 
-            // Assert
             _fileOperationsMock.Verify
             (
                 op => op.Exists(NEW_TARGET_PATH),
-                Times.Once
+                Times.AtLeastOnce
             );
 
             Assert.AreEqual(imageName, _targetStatusImage.Object.Name);

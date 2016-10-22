@@ -98,17 +98,6 @@ namespace SymlinkMaker.GUI.GtkSharp.Tests
 
         #region Confirmation handler Tests
 
-        // TODO :
-        /*
-         *  Test more cases
-         *             1 2 3 4 5 6 7 
-         * Title       X X X X     X
-         * Args          X X X      
-         * Content         X X X X X
-         * Args              X   X  
-         * 
-         * + Add cases where args are needed but are null
-         */
         [Test]
         public void Execute_WhenRequiresConfirmIsTrue_ShouldShowConfirmDialogWithCorrectContent()
         {
@@ -198,12 +187,12 @@ namespace SymlinkMaker.GUI.GtkSharp.Tests
              * Target: /target/path/ 
              */
             string regex = string.Format(
-                "Error{2}{3}{2}Source:.*{0}{2}Target:.*{1}" ,
-                _basicArguments["sourcePath"],
-                _basicArguments["targetPath"],
-                "(?s).*", // This check for a NewLine character or anything else
-                exceptionMessage
-            );
+                               "Error{2}{3}{2}Source:.*{0}{2}Target:.*{1}",
+                               _basicArguments["sourcePath"],
+                               _basicArguments["targetPath"],
+                               "(?s).*", // This check for a NewLine character or anything else
+                               exceptionMessage
+                           );
 
             _dialogHelper.Verify(
                 helper => helper.ShowDialog(
@@ -213,7 +202,7 @@ namespace SymlinkMaker.GUI.GtkSharp.Tests
             );
         }
 
-         [Test]
+        [Test]
         public void OnCommandFailure_WithoutArguments_ShouldShowFailureDialog()
         {
             _commandMock.Raise(

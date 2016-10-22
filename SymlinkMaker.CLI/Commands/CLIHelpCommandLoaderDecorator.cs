@@ -9,7 +9,6 @@ namespace SymlinkMaker.CLI
         private readonly ICommandsLoader _baseCommandsLoader;
         private readonly IConsoleHelper _consoleHelper;
 
-        // TODO : Move this to configs?
         private const string APP_NAME = "symlinkmaker";
 
         public CLIHelpCommandLoaderDecorator(
@@ -38,9 +37,7 @@ namespace SymlinkMaker.CLI
                     {
                         _consoleHelper.WriteLineColored(
                             GenerateHelpMessage(),
-                            // TODO : Use the args to get the color?? From <string, string> to <string, object> ?
-                            //        OR 
-                            //        Use global settings, like a Theme
+                            // TODO : Use global/app settings to get the color, like a Theme?
                             ConsoleColor.Yellow
                         );
 
@@ -53,13 +50,13 @@ namespace SymlinkMaker.CLI
         }
 
 
-        // TODO : Find a better way to build this (with string.PadRight, etc..)
-
-        // TODO : Generate this using the _baseCommandsLoader's commands
-        //        Would need a title or summary? Maybe add a summary to the ICommand object?
-        //        We could parse the RequiredArguments also easily enough
         private static string GenerateHelpMessage()
         {
+            // TODO : Find a better way to build this (with string.PadRight, etc..)
+
+            // TODO : Generate this using the _baseCommandsLoader's commands
+            //        Would need a title or summary? Maybe add a summary to the ICommand object?
+            //        We could parse the RequiredArguments also easily enough
             return string.Format(
                 string.Concat(
                     "Usage: {1} <command> <SOURCE> [<TARGET>] [OPTIONS]{0}",
