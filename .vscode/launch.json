@@ -1,0 +1,38 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Launch CLI",
+            "type": "mono",
+            "request": "launch",
+            "program": "${workspaceRoot}/SymlinkMaker.CLI/bin/Debug/SymlinkMaker.CLI.exe",
+            "args": ["copy", "-c",  "/home/jp/Sandbox/TestSymlink/TestFolder", "/home/jp/Sandbox/TestSymlink/TestFolder_Copy123"],
+            "cwd": "${workspaceRoot}",
+            "preLaunchTask": "",
+            "runtimeExecutable": null,
+            "env": {},
+            // Note : The External Console does not work for debugging 
+            // and the Integrated one does not support STDIN (Console.ReadKey())
+            "externalConsole": false 
+        },
+        {
+            "name": "Launch GtkSharp",
+            "type": "mono",
+            "request": "launch",
+            "program": "${workspaceRoot}/SymlinkMaker.GUI.GTKSharp/bin/Debug/SymlinkMaker.GUI.GTKSharp.exe",
+            "args": [],
+            "cwd": "${workspaceRoot}",
+            "preLaunchTask": "",
+            "runtimeExecutable": null,
+            "env": {},
+            "externalConsole": false
+        },
+        {
+            "name": "Attach",
+            "type": "mono",
+            "request": "attach",
+            "address": "localhost",
+            "port": 55555
+        }
+    ]
+}

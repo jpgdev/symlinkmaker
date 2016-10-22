@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{DDB0DBCA-5591-45F6-A598-DAF9E20864EA}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>SymlinkMaker.GUI.GtkSharp</RootNamespace>
+    <AssemblyName>SymlinkMaker.GUI.GtkSharp</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <StartupObject>SymlinkMaker.GUI.GtkSharp.MainClass</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <Reference Include="gdk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <Reference Include="glib-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <Reference Include="pango-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <Reference Include="atk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <Reference Include="glade-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <Reference Include="Mono.Posix" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="gtk-gui\gui.stetic">
+      <LogicalName>gui.stetic</LogicalName>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="gtk-gui\generated.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Commands\GtkSharpCommandConfirmationInfo.cs" />
+    <Compile Include="Commands\GtkSharpCommandAdapter.cs" />
+    <Compile Include="GtkSharpApplication.cs" />
+    <Compile Include="Views\MainWindowView.cs" />
+    <Compile Include="Utilities\IGtkIconNameConverter.cs" />
+    <Compile Include="Utilities\GtkIconNameConverter.cs" />
+    <Compile Include="Utilities\GtkSharpDialogHelper.cs" />
+    <Compile Include="Control Wrappers\GtkSharpButton.cs" />
+    <Compile Include="Control Wrappers\GtkSharpControl.cs" />
+    <Compile Include="Control Wrappers\GtkSharpTextEntry.cs" />
+    <Compile Include="Control Wrappers\GtkSharpToggleButton.cs" />
+    <Compile Include="Control Wrappers\GtkSharpImage.cs" />
+    <Compile Include="Control Wrappers\GtkSharpToggleAction.cs" />
+    <Compile Include="Control Wrappers\GtkSharpWindow.cs" />
+    <Compile Include="Commands\GtkSharpCommandAdaptersLoader.cs" />
+    <Compile Include="gtk-gui\SymlinkMaker.GUI.GtkSharp.MainWindowView.cs" />
+    <Compile Include="Utilities\IIconLoader.cs" />
+    <Compile Include="Utilities\FromWidgetIconLoader.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ProjectExtensions>
+    <MonoDevelop>
+      <Properties>
+        <Policies>
+          <TextStylePolicy inheritsSet="VisualStudio" inheritsScope="text/plain" scope="text/x-csharp" />
+          <CSharpFormattingPolicy IndentSwitchBody="True" IndentBlocksInsideExpressions="True" AnonymousMethodBraceStyle="NextLine" PropertyBraceStyle="NextLine" PropertyGetBraceStyle="NextLine" PropertySetBraceStyle="NextLine" EventBraceStyle="NextLine" EventAddBraceStyle="NextLine" EventRemoveBraceStyle="NextLine" StatementBraceStyle="NextLine" ElseNewLinePlacement="NewLine" CatchNewLinePlacement="NewLine" FinallyNewLinePlacement="NewLine" WhileNewLinePlacement="DoNotCare" ArrayInitializerWrapping="DoNotChange" ArrayInitializerBraceStyle="NextLine" BeforeMethodDeclarationParentheses="False" BeforeMethodCallParentheses="False" BeforeConstructorDeclarationParentheses="False" NewLineBeforeConstructorInitializerColon="NewLine" NewLineAfterConstructorInitializerColon="SameLine" BeforeDelegateDeclarationParentheses="False" NewParentheses="False" SpacesBeforeBrackets="False" inheritsSet="Mono" inheritsScope="text/x-csharp" scope="text/x-csharp" />
+        </Policies>
+      </Properties>
+    </MonoDevelop>
+  </ProjectExtensions>
+  <ItemGroup>
+    <ProjectReference Include="..\SymlinkMaker.Core\SymlinkMaker.Core.csproj">
+      <Project>{E739DEAD-33CB-4714-A485-83A0AAF6BE69}</Project>
+      <Name>SymlinkMaker.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SymlinkMaker.GUI\SymlinkMaker.GUI.csproj">
+      <Project>{B676AA21-1DCA-410A-94B1-323D01719B28}</Project>
+      <Name>SymlinkMaker.GUI</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Commands\" />
+    <Folder Include="Views\" />
+    <Folder Include="Utilities\" />
+    <Folder Include="Control Wrappers\" />
+  </ItemGroup>
+</Project>
