@@ -1,7 +1,7 @@
 language: csharp
 solution: SymlinkMaker.sln
 install:
-  - sudo apt-get install -y gtk-sharp2=2.12.10
+  - sudo apt-get install -y gtk-sharp2 glib2
   - nuget restore SymlinkMaker.sln
   - nuget install NUnit.Runners -Version 2.6.4 -OutputDirectory testrunner
 
