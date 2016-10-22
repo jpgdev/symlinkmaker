@@ -7,4 +7,4 @@ install:
 
 script:
   - xbuild /p:Configuration=Release SymlinkMaker.sln
-  - mono ./testrunner/NUnit.Runners.2.6.4/tools/nunit-console.exe ./SymlinkMaker.sln /config:Release
+  - mono ./testrunner/NUnit.Runners.2.6.4/tools/nunit-console.exe SymlinkMaker.sln -config:Release
